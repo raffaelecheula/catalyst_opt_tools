@@ -1,7 +1,6 @@
-# catalyst_opt_tools
-Tools to optimize catalytic surfaces and maximize reaction rates.
+# Catalyst Optimization Tools
 
-catalyst_opt_tools is a collection of computational tools and scripts designed to facilitate the optimization of catalytic surfaces. By systematically exploring the composition of these surfaces, the aim is to identify configurations that lead to significantly enhanced reaction rates and overall catalytic activity. This repository serves as a practical resource for researchers and engineers working on catalyst design and discovery.
+`catalyst_opt_tools` is a collection of computational tools and scripts designed to facilitate the optimization of catalytic surfaces. By systematically exploring the composition of these surfaces, the aim is to identify configurations that lead to significantly enhanced reaction rates and overall catalytic activity. This repository serves as a practical resource for researchers and engineers working on catalyst design and discovery.
 
 ## Features
 
@@ -9,7 +8,7 @@ catalyst_opt_tools is a collection of computational tools and scripts designed t
 - **Reaction Rate Prediction**: Tools to estimate or model reaction rates based on surface properties.
 - **Surface Property Analysis**: Utilities for analyzing key characteristics of catalytic surfaces.
 - **Data Handling**: Scripts for managing and processing input/output data related to catalytic systems.
-- **Modular Design**: Components are designed to be easily integrated into existing workflows or extended for new research.
+- **Modular Design**: Components are designed to be easily integrated into workflows.
 
 ## Installation
 
@@ -25,7 +24,6 @@ Requirements:
 - Python 3.5 or later
 - Numpy
 - [ASE](https://wiki.fysik.dtu.dk/ase/)
-- [scikit-learn](https://scikit-learn.org/)
 
 ## Usage
 
