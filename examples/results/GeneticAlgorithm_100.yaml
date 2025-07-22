@@ -1,0 +1,750 @@
+- symbols: [Au, Rh, Rh, Au, Cu, Rh, Rh, Rh, Au, Rh, Au, Au, Au, Rh, Au, Cu, Rh, Rh, Rh, Rh, Rh]
+  rate: 5.83627622E-02
+  run: 0
+- symbols: [Au, Au, Rh, Au, Rh, Au, Au, Au, Au, Cu, Rh, Cu, Au, Cu, Rh, Rh, Au, Cu, Cu, Cu, Rh]
+  rate: 3.39666982E-03
+  run: 0
+- symbols: [Rh, Cu, Rh, Rh, Cu, Rh, Cu, Cu, Au, Cu, Rh, Au, Cu, Au, Rh, Cu, Rh, Au, Cu, Au, Au]
+  rate: 3.20125740E-01
+  run: 0
+- symbols: [Cu, Au, Rh, Au, Rh, Rh, Au, Rh, Cu, Rh, Rh, Rh, Cu, Cu, Cu, Au, Cu, Rh, Cu, Cu, Rh]
+  rate: 7.98049940E-02
+  run: 0
+- symbols: [Au, Cu, Au, Au, Au, Rh, Au, Au, Rh, Au, Au, Rh, Rh, Cu, Cu, Cu, Au, Au, Au, Rh, Au]
+  rate: 3.99365002E-06
+  run: 0
+- symbols: [Cu, Rh, Rh, Rh, Cu, Cu, Cu, Rh, Rh, Au, Au, Cu, Rh, Au, Cu, Cu, Au, Cu, Rh, Cu, Rh]
+  rate: 6.14989416E-01
+  run: 0
+- symbols: [Rh, Au, Au, Au, Cu, Au, Au, Cu, Au, Cu, Cu, Rh, Rh, Au, Cu, Rh, Rh, Rh, Rh, Au, Rh]
+  rate: 8.27456309E-03
+  run: 0
+- symbols: [Au, Cu, Au, Rh, Cu, Cu, Au, Cu, Au, Cu, Au, Rh, Au, Au, Rh, Au, Au, Cu, Au, Cu, Rh]
+  rate: 5.34147284E-03
+  run: 0
+- symbols: [Cu, Cu, Rh, Cu, Rh, Au, Au, Cu, Au, Rh, Au, Rh, Au, Cu, Au, Au, Au, Rh, Rh, Cu, Rh]
+  rate: 6.75276041E-01
+  run: 0
+- symbols: [Au, Au, Rh, Au, Cu, Cu, Rh, Rh, Cu, Cu, Rh, Rh, Rh, Au, Rh, Rh, Au, Cu, Rh, Au, Rh]
+  rate: 1.84577311E-02
+  run: 0
+- symbols: [Au, Au, Rh, Au, Rh, Cu, Rh, Rh, Cu, Cu, Rh, Rh, Rh, Au, Rh, Au, Au, Cu, Au, Rh, Au]
+  rate: 1.30191636E-02
+  run: 0
+- symbols: [Au, Cu, Au, Au, Au, Rh, Au, Au, Rh, Au, Rh, Cu, Au, Cu, Rh, Rh, Cu, Cu, Cu, Rh, Rh]
+  rate: 6.03257644E-05
+  run: 0
+- symbols: [Au, Au, Rh, Au, Rh, Au, Cu, Au, Au, Cu, Au, Rh, Au, Au, Rh, Au, Au, Au, Au, Cu, Rh]
+  rate: 1.13804758E-03
+  run: 0
+- symbols: [Au, Cu, Au, Rh, Cu, Cu, Au, Cu, Au, Cu, Au, Au, Au, Au, Rh, Au, Au, Cu, Au, Cu, Au]
+  rate: 7.48839491E-04
+  run: 0
+- symbols: [Cu, Au, Rh, Rh, Cu, Cu, Rh, Cu, Cu, Cu, Rh, Rh, Rh, Au, Rh, Rh, Au, Cu, Rh, Au, Rh]
+  rate: 4.01416263E-01
+  run: 0
+- symbols: [Rh, Au, Rh, Au, Cu, Cu, Rh, Au, Rh, Au, Rh, Rh, Rh, Cu, Cu, Cu, Au, Au, Au, Rh, Au]
+  rate: 3.47242226E-02
+  run: 0
+- symbols: [Rh, Cu, Cu, Au, Rh, Au, Au, Au, Au, Cu, Rh, Cu, Au, Cu, Rh, Rh, Au, Cu, Cu, Cu, Rh]
+  rate: 1.40617640E-01
+  run: 0
+- symbols: [Au, Rh, Au, Au, Rh, Au, Au, Au, Au, Cu, Rh, Cu, Au, Cu, Rh, Rh, Au, Cu, Cu, Cu, Rh]
+  rate: 3.61204404E-03
+  run: 0
+- symbols: [Au, Au, Rh, Au, Rh, Rh, Au, Au, Cu, Rh, Rh, Rh, Cu, Cu, Cu, Au, Au, Rh, Cu, Cu, Rh]
+  rate: 7.53497896E-03
+  run: 0
+- symbols: [Au, Cu, Au, Rh, Cu, Cu, Rh, Cu, Au, Cu, Au, Cu, Au, Cu, Rh, Rh, Cu, Au, Cu, Rh, Rh]
+  rate: 1.84140578E-02
+  run: 0
+- symbols: [Au, Cu, Au, Au, Au, Rh, Au, Cu, Rh, Au, Rh, Cu, Au, Cu, Rh, Cu, Au, Rh, Rh, Cu, Rh]
+  rate: 4.44935479E-05
+  run: 0
+- symbols: [Cu, Cu, Rh, Au, Rh, Au, Au, Cu, Au, Au, Rh, Cu, Au, Cu, Rh, Rh, Cu, Cu, Cu, Rh, Au]
+  rate: 7.02453806E-02
+  run: 0
+- symbols: [Au, Cu, Au, Au, Au, Rh, Au, Au, Rh, Au, Rh, Cu, Au, Au, Rh, Au, Au, Au, Au, Cu, Cu]
+  rate: 1.15016121E-06
+  run: 0
+- symbols: [Au, Au, Rh, Cu, Rh, Au, Cu, Au, Au, Cu, Au, Rh, Au, Au, Rh, Au, Au, Cu, Au, Cu, Rh]
+  rate: 1.67469281E-02
+  run: 0
+- symbols: [Au, Cu, Au, Cu, Cu, Cu, Au, Cu, Au, Cu, Rh, Au, Au, Au, Rh, Rh, Cu, Cu, Cu, Rh, Rh]
+  rate: 4.22281173E-04
+  run: 0
+- symbols: [Au, Cu, Au, Au, Au, Rh, Cu, Au, Rh, Au, Rh, Cu, Au, Cu, Rh, Rh, Cu, Rh, Rh, Cu, Rh]
+  rate: 4.13322482E-05
+  run: 0
+- symbols: [Cu, Cu, Rh, Cu, Rh, Cu, Au, Cu, Au, Rh, Au, Cu, Au, Au, Rh, Rh, Cu, Cu, Cu, Rh, Rh]
+  rate: 1.07405173E+00
+  run: 0
+- symbols: [Au, Cu, Rh, Au, Au, Rh, Au, Cu, Rh, Au, Rh, Cu, Au, Cu, Rh, Rh, Cu, Cu, Cu, Cu, Rh]
+  rate: 2.72482200E-02
+  run: 0
+- symbols: [Au, Rh, Au, Cu, Rh, Au, Au, Cu, Au, Rh, Au, Rh, Au, Cu, Au, Au, Au, Cu, Rh, Cu, Rh]
+  rate: 1.89426456E-02
+  run: 0
+- symbols: [Cu, Cu, Rh, Cu, Rh, Cu, Au, Au, Au, Rh, Au, Rh, Au, Cu, Rh, Cu, Au, Rh, Rh, Cu, Rh]
+  rate: 1.04086665E+00
+  run: 0
+- symbols: [Au, Cu, Au, Au, Au, Rh, Rh, Cu, Rh, Au, Rh, Cu, Au, Cu, Rh, Au, Au, Cu, Cu, Cu, Rh]
+  rate: 3.92920954E-05
+  run: 0
+- symbols: [Au, Cu, Rh, Au, Au, Cu, Au, Cu, Au, Au, Rh, Cu, Cu, Cu, Rh, Rh, Cu, Cu, Cu, Rh, Au]
+  rate: 9.49856492E-03
+  run: 0
+- symbols: [Cu, Cu, Rh, Au, Rh, Au, Au, Cu, Cu, Au, Rh, Cu, Au, Cu, Au, Rh, Cu, Cu, Cu, Rh, Rh]
+  rate: 1.09395234E-01
+  run: 0
+- symbols: [Au, Cu, Rh, Cu, Rh, Au, Au, Cu, Au, Rh, Au, Rh, Au, Cu, Au, Rh, Au, Cu, Rh, Cu, Rh]
+  rate: 1.31483164E-01
+  run: 0
+- symbols: [Cu, Cu, Rh, Cu, Rh, Au, Rh, Cu, Au, Cu, Au, Rh, Au, Cu, Au, Au, Au, Rh, Rh, Cu, Rh]
+  rate: 6.92165862E-01
+  run: 0
+- symbols: [Au, Au, Au, Au, Au, Rh, Au, Cu, Rh, Au, Cu, Cu, Au, Cu, Rh, Rh, Cu, Cu, Cu, Cu, Rh]
+  rate: 6.02597153E-08
+  run: 0
+- symbols: [Au, Cu, Rh, Au, Au, Rh, Au, Cu, Au, Au, Rh, Cu, Au, Cu, Rh, Rh, Rh, Cu, Cu, Rh, Rh]
+  rate: 2.39138232E-02
+  run: 0
+- symbols: [Au, Cu, Cu, Au, Au, Rh, Au, Cu, Rh, Au, Cu, Cu, Au, Cu, Rh, Rh, Rh, Cu, Cu, Cu, Rh]
+  rate: 1.95843652E-04
+  run: 0
+- symbols: [Au, Cu, Au, Cu, Rh, Au, Au, Cu, Au, Rh, Au, Rh, Au, Cu, Au, Rh, Au, Cu, Rh, Rh, Rh]
+  rate: 8.26290681E-04
+  run: 0
+- symbols: [Au, Cu, Rh, Rh, Rh, Au, Au, Cu, Au, Rh, Au, Rh, Au, Cu, Au, Au, Au, Cu, Cu, Cu, Rh]
+  rate: 2.59733816E-02
+  run: 0
+- symbols: [Au, Rh, Cu, Cu, Rh, Au, Au, Cu, Au, Au, Rh, Cu, Au, Cu, Au, Rh, Cu, Cu, Cu, Au, Rh]
+  rate: 6.09132432E-02
+  run: 0
+- symbols: [Cu, Cu, Rh, Au, Au, Cu, Rh, Cu, Cu, Au, Rh, Cu, Cu, Cu, Rh, Rh, Cu, Cu, Cu, Rh, Au]
+  rate: 2.51909508E-01
+  run: 0
+- symbols: [Au, Cu, Rh, Au, Au, Cu, Au, Cu, Rh, Au, Rh, Cu, Au, Cu, Rh, Rh, Cu, Cu, Cu, Cu, Rh]
+  rate: 1.76500700E-02
+  run: 0
+- symbols: [Au, Au, Au, Au, Au, Rh, Au, Cu, Rh, Au, Rh, Rh, Au, Cu, Rh, Rh, Au, Cu, Rh, Cu, Rh]
+  rate: 8.16079693E-07
+  run: 0
+- symbols: [Au, Rh, Au, Cu, Rh, Au, Au, Cu, Au, Rh, Au, Rh, Au, Cu, Rh, Au, Au, Cu, Rh, Rh, Rh]
+  rate: 2.80912657E-02
+  run: 0
+- symbols: [Au, Rh, Au, Cu, Rh, Au, Rh, Cu, Au, Au, Rh, Cu, Au, Cu, Au, Rh, Cu, Au, Cu, Rh, Rh]
+  rate: 2.67158610E-02
+  run: 0
+- symbols: [Au, Au, Cu, Au, Au, Rh, Au, Cu, Au, Rh, Au, Cu, Au, Cu, Au, Rh, Au, Cu, Rh, Rh, Rh]
+  rate: 2.48612305E-06
+  run: 0
+- symbols: [Au, Cu, Au, Cu, Rh, Cu, Au, Cu, Au, Au, Au, Rh, Au, Cu, Au, Rh, Au, Cu, Rh, Rh, Rh]
+  rate: 5.87670618E-04
+  run: 0
+- symbols: [Au, Au, Au, Au, Au, Rh, Au, Cu, Rh, Au, Rh, Rh, Au, Cu, Rh, Rh, Au, Cu, Cu, Rh, Rh]
+  rate: 1.07363910E-06
+  run: 0
+- symbols: [Au, Rh, Cu, Au, Cu, Au, Au, Cu, Au, Au, Rh, Cu, Au, Cu, Au, Rh, Cu, Au, Cu, Rh, Rh]
+  rate: 3.83711721E-03
+  run: 0
+- symbols: [Rh, Cu, Au, Rh, Cu, Cu, Au, Au, Rh, Cu, Au, Cu, Au, Rh, Au, Cu, Au, Cu, Au, Au, Cu]
+  rate: 6.31626432E-02
+  run: 1
+- symbols: [Cu, Rh, Rh, Rh, Rh, Cu, Rh, Rh, Rh, Au, Cu, Rh, Cu, Au, Au, Cu, Au, Rh, Cu, Rh, Rh]
+  rate: 4.32705336E-01
+  run: 1
+- symbols: [Au, Rh, Rh, Rh, Rh, Cu, Cu, Rh, Au, Au, Rh, Au, Au, Au, Au, Rh, Rh, Au, Cu, Au, Au]
+  rate: 3.82504608E-02
+  run: 1
+- symbols: [Cu, Cu, Au, Au, Au, Cu, Rh, Rh, Rh, Cu, Rh, Au, Cu, Cu, Au, Rh, Au, Au, Rh, Au, Au]
+  rate: 5.06676676E-04
+  run: 1
+- symbols: [Rh, Cu, Cu, Au, Cu, Au, Cu, Rh, Cu, Cu, Au, Rh, Cu, Rh, Au, Rh, Au, Au, Rh, Au, Cu]
+  rate: 1.45381443E-01
+  run: 1
+- symbols: [Rh, Au, Au, Cu, Cu, Au, Rh, Rh, Rh, Rh, Rh, Rh, Au, Rh, Cu, Rh, Au, Au, Cu, Cu, Au]
+  rate: 4.78357048E-02
+  run: 1
+- symbols: [Cu, Cu, Cu, Rh, Au, Rh, Rh, Au, Rh, Au, Cu, Rh, Au, Au, Cu, Cu, Au, Au, Cu, Cu, Cu]
+  rate: 4.31524744E-01
+  run: 1
+- symbols: [Cu, Rh, Rh, Au, Rh, Rh, Au, Au, Rh, Au, Rh, Cu, Rh, Cu, Rh, Rh, Cu, Cu, Rh, Rh, Cu]
+  rate: 3.81068043E-01
+  run: 1
+- symbols: [Au, Rh, Rh, Rh, Rh, Au, Au, Au, Au, Au, Rh, Au, Cu, Cu, Rh, Rh, Cu, Cu, Rh, Rh, Rh]
+  rate: 1.58378938E-01
+  run: 1
+- symbols: [Rh, Au, Rh, Rh, Au, Au, Cu, Rh, Cu, Cu, Rh, Rh, Rh, Cu, Rh, Cu, Cu, Cu, Au, Rh, Au]
+  rate: 9.10649388E-02
+  run: 1
+- symbols: [Au, Rh, Au, Cu, Rh, Au, Rh, Rh, Rh, Rh, Rh, Rh, Au, Rh, Cu, Rh, Au, Au, Rh, Cu, Au]
+  rate: 1.48357709E-01
+  run: 1
+- symbols: [Rh, Cu, Au, Cu, Cu, Au, Rh, Cu, Rh, Rh, Rh, Rh, Au, Rh, Rh, Rh, Cu, Cu, Rh, Rh, Rh]
+  rate: 4.97058044E-01
+  run: 1
+- symbols: [Rh, Cu, Cu, Au, Cu, Au, Cu, Rh, Au, Cu, Au, Rh, Cu, Rh, Au, Cu, Au, Au, Rh, Au, Cu]
+  rate: 6.61673311E-02
+  run: 1
+- symbols: [Rh, Cu, Cu, Rh, Rh, Au, Cu, Rh, Cu, Cu, Au, Rh, Rh, Cu, Rh, Cu, Cu, Cu, Au, Rh, Au]
+  rate: 1.50895116E+00
+  run: 1
+- symbols: [Au, Au, Rh, Rh, Au, Au, Rh, Rh, Cu, Cu, Rh, Rh, Rh, Cu, Rh, Cu, Cu, Cu, Rh, Rh, Rh]
+  rate: 6.09340419E-02
+  run: 1
+- symbols: [Au, Rh, Rh, Rh, Rh, Au, Au, Au, Au, Cu, Rh, Rh, Au, Rh, Cu, Rh, Au, Au, Au, Cu, Au]
+  rate: 5.29210143E-02
+  run: 1
+- symbols: [Rh, Rh, Rh, Rh, Rh, Au, Au, Au, Au, Au, Rh, Au, Cu, Cu, Au, Au, Cu, Cu, Rh, Rh, Rh]
+  rate: 2.45631252E-01
+  run: 1
+- symbols: [Au, Rh, Rh, Rh, Rh, Au, Au, Au, Au, Au, Rh, Au, Cu, Cu, Rh, Rh, Au, Cu, Rh, Cu, Cu]
+  rate: 7.04737869E-02
+  run: 1
+- symbols: [Rh, Cu, Rh, Rh, Au, Au, Cu, Rh, Cu, Cu, Rh, Rh, Rh, Cu, Rh, Cu, Rh, Cu, Rh, Rh, Au]
+  rate: 1.05707087E+00
+  run: 1
+- symbols: [Au, Rh, Rh, Rh, Cu, Au, Au, Au, Au, Au, Rh, Au, Cu, Cu, Rh, Rh, Au, Au, Au, Rh, Au]
+  rate: 6.46877063E-02
+  run: 1
+- symbols: [Rh, Cu, Rh, Au, Cu, Au, Cu, Rh, Au, Cu, Au, Rh, Cu, Rh, Au, Cu, Au, Au, Rh, Au, Rh]
+  rate: 6.13970127E-02
+  run: 1
+- symbols: [Rh, Cu, Cu, Au, Cu, Au, Rh, Rh, Au, Cu, Au, Rh, Cu, Rh, Au, Cu, Au, Au, Rh, Cu, Cu]
+  rate: 9.37172848E-02
+  run: 1
+- symbols: [Rh, Cu, Cu, Au, Cu, Cu, Cu, Rh, Au, Cu, Au, Rh, Cu, Rh, Au, Au, Au, Au, Rh, Au, Cu]
+  rate: 6.76211695E-02
+  run: 1
+- symbols: [Rh, Cu, Au, Au, Cu, Au, Cu, Rh, Au, Cu, Rh, Au, Cu, Cu, Rh, Rh, Au, Cu, Rh, Cu, Cu]
+  rate: 4.02255316E-02
+  run: 1
+- symbols: [Au, Rh, Rh, Rh, Rh, Au, Au, Au, Rh, Cu, Rh, Rh, Au, Rh, Au, Rh, Au, Au, Au, Cu, Au]
+  rate: 4.54145785E-02
+  run: 1
+- symbols: [Au, Rh, Rh, Au, Rh, Au, Au, Au, Au, Cu, Au, Rh, Au, Rh, Cu, Rh, Au, Au, Rh, Au, Cu]
+  rate: 1.24705297E-02
+  run: 1
+- symbols: [Rh, Cu, Cu, Cu, Cu, Au, Cu, Rh, Au, Cu, Au, Au, Cu, Rh, Au, Cu, Au, Au, Rh, Au, Cu]
+  rate: 2.18416488E-01
+  run: 1
+- symbols: [Rh, Cu, Cu, Au, Cu, Au, Cu, Rh, Au, Rh, Rh, Rh, Cu, Rh, Au, Cu, Au, Au, Rh, Au, Cu]
+  rate: 1.91970522E-01
+  run: 1
+- symbols: [Au, Rh, Rh, Au, Cu, Cu, Cu, Rh, Au, Cu, Au, Rh, Cu, Rh, Cu, Cu, Au, Au, Rh, Au, Rh]
+  rate: 3.94877961E-02
+  run: 1
+- symbols: [Rh, Cu, Au, Au, Cu, Au, Cu, Cu, Au, Cu, Rh, Au, Cu, Au, Rh, Rh, Au, Cu, Rh, Cu, Cu]
+  rate: 1.44425848E-02
+  run: 1
+- symbols: [Rh, Cu, Au, Au, Cu, Rh, Cu, Rh, Au, Cu, Rh, Rh, Cu, Rh, Au, Cu, Au, Au, Rh, Au, Cu]
+  rate: 4.03578902E-02
+  run: 1
+- symbols: [Rh, Cu, Cu, Au, Rh, Au, Rh, Rh, Au, Rh, Rh, Rh, Au, Rh, Cu, Rh, Au, Au, Rh, Au, Cu]
+  rate: 2.42222672E-01
+  run: 1
+- symbols: [Au, Rh, Rh, Au, Rh, Au, Au, Au, Cu, Cu, Au, Rh, Au, Rh, Cu, Cu, Au, Au, Rh, Au, Cu]
+  rate: 1.68850164E-02
+  run: 1
+- symbols: [Au, Rh, Rh, Rh, Rh, Au, Au, Au, Cu, Cu, Au, Rh, Cu, Rh, Au, Cu, Au, Au, Rh, Au, Rh]
+  rate: 5.26437481E-02
+  run: 1
+- symbols: [Rh, Cu, Rh, Cu, Cu, Au, Cu, Rh, Au, Cu, Rh, Au, Cu, Au, Rh, Rh, Au, Cu, Rh, Cu, Cu]
+  rate: 9.58901673E-01
+  run: 1
+- symbols: [Rh, Cu, Au, Cu, Rh, Au, Cu, Rh, Au, Rh, Rh, Rh, Cu, Rh, Au, Cu, Au, Au, Rh, Au, Cu]
+  rate: 1.93545733E-01
+  run: 1
+- symbols: [Rh, Cu, Cu, Au, Rh, Au, Au, Au, Au, Cu, Au, Rh, Cu, Rh, Cu, Rh, Au, Au, Au, Au, Cu]
+  rate: 3.56774150E-02
+  run: 1
+- symbols: [Rh, Cu, Au, Cu, Rh, Au, Cu, Cu, Au, Cu, Rh, Au, Cu, Au, Rh, Cu, Au, Rh, Rh, Cu, Cu]
+  rate: 1.66790970E-01
+  run: 1
+- symbols: [Rh, Cu, Au, Au, Cu, Au, Cu, Cu, Au, Cu, Rh, Au, Cu, Au, Rh, Cu, Au, Cu, Rh, Au, Au]
+  rate: 6.91893181E-03
+  run: 1
+- symbols: [Rh, Cu, Au, Au, Rh, Au, Rh, Rh, Au, Cu, Au, Rh, Cu, Rh, Cu, Cu, Au, Au, Rh, Au, Rh]
+  rate: 3.06485089E-02
+  run: 1
+- symbols: [Au, Rh, Rh, Au, Cu, Cu, Cu, Rh, Au, Cu, Au, Rh, Cu, Cu, Cu, Rh, Au, Cu, Au, Au, Cu]
+  rate: 2.41576486E-02
+  run: 1
+- symbols: [Rh, Cu, Cu, Au, Rh, Rh, Cu, Rh, Au, Rh, Rh, Cu, Cu, Rh, Au, Cu, Au, Au, Rh, Au, Cu]
+  rate: 2.48714652E-01
+  run: 1
+- symbols: [Rh, Cu, Au, Cu, Rh, Au, Cu, Rh, Rh, Rh, Cu, Rh, Cu, Rh, Rh, Rh, Au, Cu, Rh, Cu, Cu]
+  rate: 6.57035252E-01
+  run: 1
+- symbols: [Rh, Cu, Au, Au, Cu, Au, Cu, Cu, Au, Cu, Cu, Au, Cu, Au, Rh, Rh, Au, Rh, Rh, Au, Cu]
+  rate: 1.55205734E-02
+  run: 1
+- symbols: [Rh, Cu, Au, Cu, Rh, Au, Cu, Rh, Au, Rh, Rh, Au, Cu, Rh, Au, Cu, Au, Au, Rh, Au, Cu]
+  rate: 1.17604525E-01
+  run: 1
+- symbols: [Au, Rh, Rh, Cu, Cu, Cu, Cu, Rh, Au, Cu, Au, Rh, Cu, Cu, Cu, Rh, Au, Au, Au, Au, Cu]
+  rate: 8.09463490E-02
+  run: 1
+- symbols: [Rh, Rh, Cu, Cu, Cu, Cu, Cu, Rh, Au, Cu, Au, Rh, Cu, Cu, Cu, Rh, Au, Cu, Au, Au, Cu]
+  rate: 7.32511116E-01
+  run: 1
+- symbols: [Au, Rh, Rh, Au, Cu, Cu, Rh, Cu, Au, Cu, Cu, Au, Cu, Au, Rh, Rh, Au, Rh, Rh, Rh, Cu]
+  rate: 6.04878463E-02
+  run: 1
+- symbols: [Rh, Rh, Au, Au, Cu, Au, Cu, Cu, Au, Cu, Cu, Au, Rh, Au, Rh, Rh, Au, Au, Au, Au, Cu]
+  rate: 1.73083679E-02
+  run: 1
+- symbols: [Au, Rh, Rh, Rh, Cu, Cu, Cu, Rh, Au, Rh, Au, Rh, Cu, Cu, Cu, Rh, Au, Au, Au, Au, Cu]
+  rate: 4.56629276E-02
+  run: 1
+- symbols: [Cu, Au, Au, Au, Rh, Rh, Cu, Rh, Cu, Rh, Rh, Rh, Au, Rh, Rh, Rh, Au, Au, Cu, Au, Au]
+  rate: 1.68075380E-04
+  run: 2
+- symbols: [Cu, Au, Cu, Au, Au, Cu, Cu, Rh, Cu, Cu, Au, Rh, Rh, Au, Rh, Au, Rh, Cu, Cu, Rh, Au]
+  rate: 1.97842940E-04
+  run: 2
+- symbols: [Cu, Rh, Cu, Cu, Rh, Cu, Cu, Rh, Rh, Rh, Cu, Au, Rh, Rh, Rh, Au, Au, Cu, Au, Rh, Au]
+  rate: 2.31807374E+00
+  run: 2
+- symbols: [Au, Au, Au, Au, Cu, Cu, Cu, Au, Cu, Au, Au, Rh, Rh, Cu, Cu, Au, Au, Cu, Au, Au, Rh]
+  rate: 2.01392014E-09
+  run: 2
+- symbols: [Cu, Rh, Rh, Rh, Rh, Au, Au, Au, Au, Au, Cu, Cu, Au, Rh, Cu, Rh, Cu, Cu, Rh, Rh, Au]
+  rate: 2.51664968E-01
+  run: 2
+- symbols: [Au, Rh, Cu, Rh, Au, Au, Cu, Rh, Rh, Rh, Au, Au, Rh, Au, Au, Cu, Au, Rh, Cu, Rh, Rh]
+  rate: 6.56824621E-02
+  run: 2
+- symbols: [Cu, Cu, Rh, Au, Au, Au, Au, Rh, Rh, Cu, Cu, Cu, Rh, Au, Au, Cu, Au, Cu, Rh, Cu, Cu]
+  rate: 7.89447870E-02
+  run: 2
+- symbols: [Cu, Cu, Cu, Cu, Au, Cu, Rh, Cu, Cu, Rh, Rh, Au, Rh, Rh, Cu, Cu, Au, Cu, Cu, Rh, Cu]
+  rate: 2.96108099E-02
+  run: 2
+- symbols: [Au, Rh, Cu, Au, Au, Au, Cu, Rh, Rh, Au, Rh, Au, Cu, Rh, Au, Cu, Cu, Au, Rh, Cu, Cu]
+  rate: 1.34649651E-02
+  run: 2
+- symbols: [Rh, Rh, Au, Cu, Au, Rh, Cu, Cu, Cu, Rh, Rh, Rh, Cu, Au, Au, Au, Cu, Cu, Au, Au, Au]
+  rate: 5.37772259E-02
+  run: 2
+- symbols: [Au, Au, Au, Au, Cu, Cu, Cu, Au, Cu, Au, Cu, Cu, Rh, Au, Rh, Cu, Rh, Cu, Rh, Cu, Cu]
+  rate: 1.51727819E-08
+  run: 2
+- symbols: [Cu, Cu, Rh, Au, Au, Cu, Cu, Rh, Cu, Rh, Rh, Rh, Au, Rh, Rh, Rh, Au, Au, Cu, Au, Au]
+  rate: 2.69027715E-01
+  run: 2
+- symbols: [Rh, Au, Au, Au, Rh, Rh, Cu, Cu, Cu, Cu, Rh, Au, Rh, Rh, Cu, Cu, Au, Cu, Cu, Rh, Cu]
+  rate: 1.17431481E-02
+  run: 2
+- symbols: [Cu, Cu, Cu, Cu, Au, Rh, Cu, Cu, Cu, Rh, Rh, Au, Rh, Rh, Cu, Cu, Au, Cu, Cu, Rh, Cu]
+  rate: 1.87871400E-02
+  run: 2
+- symbols: [Cu, Cu, Cu, Cu, Cu, Cu, Cu, Au, Cu, Au, Au, Rh, Rh, Cu, Cu, Au, Au, Cu, Au, Au, Cu]
+  rate: 3.65871835E-04
+  run: 2
+- symbols: [Au, Au, Au, Au, Cu, Cu, Au, Rh, Rh, Rh, Cu, Cu, Rh, Au, Au, Cu, Au, Cu, Rh, Cu, Au]
+  rate: 6.53554948E-08
+  run: 2
+- symbols: [Cu, Cu, Rh, Au, Au, Cu, Au, Rh, Cu, Cu, Cu, Cu, Rh, Rh, Rh, Rh, Au, Au, Cu, Au, Au]
+  rate: 9.69766977E-02
+  run: 2
+- symbols: [Cu, Au, Au, Au, Au, Cu, Rh, Cu, Cu, Rh, Rh, Au, Rh, Rh, Cu, Cu, Au, Au, Au, Rh, Cu]
+  rate: 2.46135885E-05
+  run: 2
+- symbols: [Rh, Rh, Cu, Cu, Au, Cu, Rh, Cu, Cu, Rh, Rh, Au, Rh, Rh, Cu, Cu, Au, Cu, Cu, Rh, Cu]
+  rate: 9.67770271E-01
+  run: 2
+- symbols: [Rh, Cu, Rh, Au, Au, Cu, Rh, Rh, Cu, Cu, Cu, Cu, Rh, Rh, Rh, Rh, Au, Au, Cu, Au, Au]
+  rate: 1.04905172E-01
+  run: 2
+- symbols: [Cu, Cu, Rh, Au, Au, Rh, Au, Rh, Cu, Cu, Cu, Cu, Rh, Rh, Rh, Rh, Au, Rh, Rh, Cu, Au]
+  rate: 2.08907832E-01
+  run: 2
+- symbols: [Au, Au, Au, Au, Cu, Cu, Au, Rh, Au, Au, Au, Rh, Rh, Au, Cu, Au, Au, Cu, Au, Au, Cu]
+  rate: 9.69975122E-10
+  run: 2
+- symbols: [Cu, Cu, Cu, Cu, Cu, Cu, Cu, Cu, Cu, Rh, Rh, Au, Rh, Rh, Cu, Cu, Au, Au, Rh, Rh, Cu]
+  rate: 4.28405551E-02
+  run: 2
+- symbols: [Cu, Au, Au, Au, Au, Cu, Rh, Cu, Rh, Au, Cu, Cu, Rh, Rh, Rh, Rh, Au, Au, Cu, Au, Au]
+  rate: 1.67960336E-05
+  run: 2
+- symbols: [Cu, Cu, Rh, Au, Au, Rh, Au, Rh, Cu, Cu, Cu, Cu, Rh, Rh, Rh, Au, Au, Au, Cu, Au, Au]
+  rate: 6.70914886E-02
+  run: 2
+- symbols: [Cu, Cu, Rh, Au, Au, Cu, Au, Rh, Cu, Cu, Cu, Cu, Rh, Rh, Au, Au, Au, Cu, Rh, Cu, Au]
+  rate: 4.78614167E-02
+  run: 2
+- symbols: [Au, Au, Au, Au, Cu, Cu, Au, Rh, Rh, Au, Cu, Cu, Rh, Au, Au, Cu, Au, Cu, Au, Au, Cu]
+  rate: 2.32999231E-09
+  run: 2
+- symbols: [Cu, Cu, Cu, Cu, Cu, Cu, Cu, Au, Cu, Au, Au, Rh, Au, Cu, Cu, Rh, Au, Cu, Au, Au, Cu]
+  rate: 8.49812801E-05
+  run: 2
+- symbols: [Au, Au, Au, Au, Cu, Cu, Au, Rh, Cu, Au, Cu, Rh, Au, Cu, Cu, Rh, Au, Cu, Cu, Au, Cu]
+  rate: 7.00719958E-10
+  run: 2
+- symbols: [Cu, Cu, Cu, Cu, Cu, Cu, Cu, Rh, Cu, Au, Au, Rh, Au, Au, Cu, Cu, Au, Cu, Au, Au, Cu]
+  rate: 8.51376468E-05
+  run: 2
+- symbols: [Au, Rh, Cu, Cu, Cu, Cu, Cu, Cu, Cu, Rh, Rh, Cu, Rh, Rh, Cu, Cu, Au, Au, Rh, Rh, Cu]
+  rate: 3.35689210E-01
+  run: 2
+- symbols: [Cu, Cu, Cu, Cu, Cu, Cu, Cu, Cu, Cu, Cu, Au, Rh, Rh, Rh, Cu, Au, Au, Cu, Au, Au, Cu]
+  rate: 2.73225870E-03
+  run: 2
+- symbols: [Au, Au, Au, Au, Cu, Cu, Au, Rh, Au, Au, Au, Rh, Rh, Rh, Cu, Au, Au, Rh, Au, Au, Cu]
+  rate: 1.18759224E-08
+  run: 2
+- symbols: [Au, Au, Au, Au, Cu, Cu, Au, Au, Cu, Au, Au, Rh, Au, Cu, Cu, Rh, Au, Rh, Au, Au, Cu]
+  rate: 5.53624242E-10
+  run: 2
+- symbols: [Cu, Cu, Cu, Cu, Cu, Au, Au, Au, Cu, Au, Au, Rh, Rh, Au, Cu, Au, Au, Cu, Au, Au, Cu]
+  rate: 1.46691963E-04
+  run: 2
+- symbols: [Au, Au, Au, Au, Cu, Cu, Cu, Cu, Cu, Rh, Rh, Au, Rh, Rh, Rh, Rh, Au, Au, Rh, Rh, Cu]
+  rate: 2.38733575E-06
+  run: 2
+- symbols: [Cu, Cu, Au, Au, Cu, Au, Au, Rh, Au, Rh, Au, Rh, Rh, Au, Cu, Au, Au, Cu, Au, Au, Cu]
+  rate: 4.33716190E-05
+  run: 2
+- symbols: [Rh, Cu, Cu, Cu, Cu, Cu, Cu, Cu, Cu, Cu, Au, Cu, Rh, Rh, Cu, Au, Au, Cu, Cu, Au, Cu]
+  rate: 1.81219834E-01
+  run: 2
+- symbols: [Au, Cu, Au, Au, Cu, Cu, Au, Rh, Cu, Au, Cu, Rh, Au, Au, Cu, Rh, Au, Cu, Au, Au, Cu]
+  rate: 1.70711521E-07
+  run: 2
+- symbols: [Cu, Cu, Cu, Au, Cu, Cu, Cu, Rh, Cu, Au, Au, Rh, Rh, Au, Cu, Cu, Au, Rh, Au, Au, Cu]
+  rate: 3.08747925E-04
+  run: 2
+- symbols: [Au, Rh, Au, Au, Cu, Cu, Au, Rh, Rh, Au, Au, Au, Rh, Rh, Rh, Rh, Au, Au, Rh, Rh, Cu]
+  rate: 6.28552439E-03
+  run: 2
+- symbols: [Au, Au, Rh, Au, Cu, Cu, Cu, Cu, Cu, Rh, Rh, Rh, Rh, Rh, Rh, Au, Au, Cu, Au, Au, Cu]
+  rate: 8.12037181E-03
+  run: 2
+- symbols: [Au, Cu, Cu, Cu, Cu, Cu, Cu, Cu, Cu, Au, Cu, Rh, Au, Cu, Cu, Rh, Au, Au, Cu, Au, Cu]
+  rate: 4.87672332E-05
+  run: 2
+- symbols: [Au, Au, Au, Cu, Cu, Cu, Au, Rh, Cu, Au, Cu, Rh, Au, Cu, Cu, Rh, Au, Au, Au, Au, Cu]
+  rate: 7.52045247E-08
+  run: 2
+- symbols: [Cu, Cu, Cu, Cu, Cu, Cu, Cu, Au, Au, Au, Au, Rh, Rh, Rh, Cu, Au, Au, Cu, Au, Au, Cu]
+  rate: 1.09011467E-03
+  run: 2
+- symbols: [Rh, Cu, Au, Au, Cu, Cu, Au, Rh, Au, Au, Rh, Au, Rh, Rh, Rh, Rh, Au, Au, Rh, Rh, Cu]
+  rate: 6.54874632E-02
+  run: 2
+- symbols: [Rh, Cu, Rh, Au, Cu, Cu, Au, Rh, Au, Au, Rh, Au, Rh, Rh, Rh, Rh, Au, Cu, Au, Au, Cu]
+  rate: 1.10099931E-01
+  run: 2
+- symbols: [Cu, Cu, Cu, Au, Cu, Cu, Cu, Rh, Cu, Au, Au, Rh, Rh, Au, Cu, Cu, Au, Rh, Au, Rh, Au]
+  rate: 5.02345858E-04
+  run: 2
+- symbols: [Cu, Cu, Cu, Au, Cu, Cu, Cu, Rh, Cu, Au, Au, Rh, Cu, Au, Rh, Cu, Au, Au, Rh, Rh, Cu]
+  rate: 8.06996129E-04
+  run: 2
+- symbols: [Rh, Cu, Rh, Au, Cu, Cu, Cu, Cu, Cu, Rh, Rh, Rh, Cu, Rh, Rh, Au, Au, Rh, Au, Au, Cu]
+  rate: 1.73156801E-01
+  run: 2
+- symbols: [Cu, Cu, Cu, Cu, Rh, Cu, Cu, Rh, Rh, Cu, Rh, Rh, Cu, Rh, Cu, Au, Au, Rh, Au, Rh, Rh]
+  rate: 5.06668738E-01
+  run: 3
+- symbols: [Cu, Au, Rh, Rh, Au, Cu, Rh, Au, Cu, Rh, Au, Rh, Rh, Rh, Cu, Cu, Cu, Au, Cu, Rh, Cu]
+  rate: 1.04917589E-01
+  run: 3
+- symbols: [Rh, Rh, Cu, Cu, Cu, Au, Au, Au, Au, Au, Au, Au, Au, Au, Au, Cu, Au, Au, Rh, Cu, Cu]
+  rate: 8.68218336E-02
+  run: 3
+- symbols: [Rh, Cu, Rh, Au, Rh, Rh, Cu, Au, Au, Cu, Cu, Rh, Cu, Cu, Cu, Rh, Au, Cu, Au, Rh, Au]
+  rate: 1.78703735E-01
+  run: 3
+- symbols: [Cu, Rh, Au, Au, Rh, Au, Au, Au, Au, Au, Cu, Cu, Cu, Rh, Rh, Rh, Au, Cu, Rh, Cu, Rh]
+  rate: 1.04574930E-02
+  run: 3
+- symbols: [Rh, Au, Au, Au, Cu, Au, Cu, Cu, Cu, Rh, Cu, Cu, Rh, Au, Au, Au, Au, Rh, Cu, Rh, Rh]
+  rate: 2.57990352E-03
+  run: 3
+- symbols: [Rh, Au, Cu, Cu, Rh, Rh, Au, Rh, Rh, Rh, Rh, Au, Rh, Cu, Au, Rh, Rh, Au, Au, Au, Au]
+  rate: 3.59504917E-01
+  run: 3
+- symbols: [Cu, Cu, Au, Cu, Cu, Cu, Cu, Rh, Au, Au, Rh, Rh, Cu, Au, Au, Au, Cu, Rh, Cu, Cu, Cu]
+  rate: 1.45179305E-04
+  run: 3
+- symbols: [Au, Rh, Cu, Au, Au, Au, Rh, Au, Cu, Au, Rh, Au, Cu, Au, Au, Au, Rh, Rh, Au, Rh, Rh]
+  rate: 8.15957855E-03
+  run: 3
+- symbols: [Rh, Rh, Rh, Au, Cu, Au, Au, Cu, Cu, Cu, Au, Au, Cu, Au, Rh, Au, Cu, Au, Cu, Au, Cu]
+  rate: 3.13349989E-02
+  run: 3
+- symbols: [Cu, Rh, Au, Cu, Cu, Cu, Cu, Rh, Au, Au, Rh, Rh, Cu, Au, Au, Au, Rh, Rh, Cu, Rh, Rh]
+  rate: 3.14999030E-01
+  run: 3
+- symbols: [Au, Au, Rh, Au, Cu, Au, Au, Cu, Cu, Cu, Au, Au, Rh, Au, Rh, Au, Cu, Au, Cu, Au, Cu]
+  rate: 1.27031182E-04
+  run: 3
+- symbols: [Rh, Rh, Au, Au, Cu, Au, Au, Cu, Rh, Cu, Au, Au, Cu, Au, Cu, Rh, Au, Cu, Au, Rh, Au]
+  rate: 2.24347493E-02
+  run: 3
+- symbols: [Rh, Cu, Rh, Au, Rh, Rh, Cu, Cu, Au, Au, Rh, Cu, Cu, Rh, Rh, Rh, Au, Cu, Rh, Cu, Rh]
+  rate: 2.71336575E-01
+  run: 3
+- symbols: [Cu, Rh, Au, Au, Au, Au, Au, Au, Au, Au, Rh, Cu, Cu, Rh, Au, Au, Cu, Rh, Cu, Cu, Cu]
+  rate: 2.39469612E-03
+  run: 3
+- symbols: [Cu, Cu, Au, Cu, Cu, Cu, Cu, Rh, Cu, Au, Rh, Au, Cu, Au, Au, Au, Rh, Rh, Rh, Cu, Rh]
+  rate: 3.60873061E-03
+  run: 3
+- symbols: [Au, Rh, Cu, Au, Au, Au, Rh, Rh, Cu, Au, Rh, Au, Cu, Au, Rh, Au, Cu, Au, Cu, Au, Rh]
+  rate: 9.24603833E-03
+  run: 3
+- symbols: [Rh, Rh, Rh, Au, Au, Rh, Cu, Au, Au, Rh, Cu, Rh, Cu, Cu, Cu, Rh, Au, Cu, Au, Rh, Au]
+  rate: 7.16327270E-02
+  run: 3
+- symbols: [Rh, Cu, Rh, Au, Rh, Rh, Cu, Au, Au, Cu, Cu, Rh, Cu, Rh, Rh, Rh, Au, Cu, Au, Au, Rh]
+  rate: 2.20901195E-01
+  run: 3
+- symbols: [Cu, Cu, Au, Cu, Cu, Au, Au, Cu, Cu, Cu, Au, Au, Cu, Au, Cu, Rh, Au, Cu, Cu, Rh, Au]
+  rate: 2.28560469E-05
+  run: 3
+- symbols: [Cu, Rh, Au, Au, Cu, Au, Rh, Cu, Rh, Cu, Au, Au, Cu, Au, Cu, Au, Cu, Au, Cu, Au, Cu]
+  rate: 1.48284030E-02
+  run: 3
+- symbols: [Au, Rh, Rh, Au, Cu, Au, Au, Cu, Cu, Cu, Au, Au, Rh, Au, Rh, Au, Cu, Au, Cu, Cu, Cu]
+  rate: 9.69544964E-03
+  run: 3
+- symbols: [Cu, Rh, Au, Au, Au, Au, Rh, Rh, Cu, Au, Rh, Au, Cu, Cu, Rh, Au, Cu, Au, Cu, Cu, Rh]
+  rate: 2.60666715E-02
+  run: 3
+- symbols: [Au, Rh, Cu, Au, Au, Au, Rh, Rh, Cu, Au, Rh, Au, Cu, Au, Cu, Au, Au, Rh, Rh, Cu, Rh]
+  rate: 9.27661317E-03
+  run: 3
+- symbols: [Au, Cu, Au, Cu, Cu, Cu, Cu, Rh, Au, Au, Au, Au, Cu, Au, Cu, Rh, Au, Cu, Au, Rh, Au]
+  rate: 1.54088211E-06
+  run: 3
+- symbols: [Rh, Rh, Au, Au, Au, Au, Au, Cu, Rh, Cu, Au, Au, Rh, Au, Rh, Rh, Cu, Au, Cu, Au, Cu]
+  rate: 1.81918355E-02
+  run: 3
+- symbols: [Au, Au, Rh, Cu, Cu, Cu, Au, Cu, Au, Au, Rh, Cu, Cu, Rh, Au, Au, Cu, Rh, Cu, Cu, Cu]
+  rate: 1.56195991E-02
+  run: 3
+- symbols: [Cu, Rh, Cu, Cu, Au, Au, Au, Au, Cu, Au, Rh, Au, Cu, Au, Rh, Au, Cu, Au, Cu, Au, Rh]
+  rate: 2.06969023E-01
+  run: 3
+- symbols: [Cu, Cu, Cu, Cu, Rh, Cu, Au, Rh, Rh, Cu, Rh, Rh, Cu, Rh, Cu, Rh, Rh, Cu, Au, Rh, Au]
+  rate: 2.96504884E-01
+  run: 3
+- symbols: [Au, Cu, Au, Rh, Cu, Cu, Cu, Rh, Au, Au, Au, Au, Cu, Cu, Cu, Rh, Au, Cu, Au, Rh, Au]
+  rate: 2.64824075E-03
+  run: 3
+- symbols: [Au, Cu, Au, Cu, Cu, Cu, Rh, Rh, Au, Cu, Au, Au, Cu, Cu, Cu, Rh, Au, Cu, Cu, Rh, Au]
+  rate: 2.23211471E-05
+  run: 3
+- symbols: [Cu, Cu, Au, Au, Au, Au, Au, Cu, Cu, Cu, Au, Au, Rh, Au, Rh, Rh, Cu, Au, Cu, Cu, Cu]
+  rate: 2.17096574E-06
+  run: 3
+- symbols: [Rh, Cu, Au, Cu, Au, Au, Au, Rh, Rh, Cu, Rh, Rh, Cu, Rh, Cu, Au, Au, Rh, Au, Rh, Rh]
+  rate: 2.08048532E-01
+  run: 3
+- symbols: [Au, Cu, Au, Cu, Cu, Cu, Cu, Rh, Au, Au, Au, Au, Cu, Au, Rh, Rh, Cu, Cu, Au, Rh, Au]
+  rate: 1.92022737E-05
+  run: 3
+- symbols: [Au, Au, Au, Cu, Cu, Cu, Cu, Rh, Au, Au, Au, Cu, Cu, Au, Cu, Rh, Au, Cu, Au, Rh, Au]
+  rate: 1.22538721E-07
+  run: 3
+- symbols: [Au, Cu, Au, Cu, Cu, Cu, Au, Rh, Au, Au, Au, Au, Cu, Au, Cu, Rh, Au, Cu, Rh, Rh, Au]
+  rate: 1.46020092E-05
+  run: 3
+- symbols: [Cu, Au, Au, Cu, Cu, Au, Au, Cu, Cu, Rh, Au, Au, Cu, Au, Cu, Rh, Au, Cu, Cu, Au, Cu]
+  rate: 1.08623493E-06
+  run: 3
+- symbols: [Au, Cu, Au, Cu, Cu, Cu, Au, Rh, Au, Au, Cu, Au, Cu, Au, Cu, Rh, Au, Cu, Au, Au, Cu]
+  rate: 3.94605511E-07
+  run: 3
+- symbols: [Cu, Au, Au, Rh, Cu, Rh, Au, Cu, Cu, Cu, Au, Au, Rh, Au, Rh, Rh, Cu, Au, Cu, Cu, Cu]
+  rate: 1.04995851E-02
+  run: 3
+- symbols: [Cu, Cu, Au, Au, Au, Cu, Au, Rh, Au, Au, Au, Au, Au, Au, Cu, Rh, Au, Cu, Rh, Rh, Cu]
+  rate: 8.55558092E-07
+  run: 3
+- symbols: [Au, Cu, Au, Au, Cu, Au, Au, Rh, Au, Au, Au, Au, Cu, Au, Cu, Rh, Au, Cu, Au, Rh, Au]
+  rate: 1.35085449E-08
+  run: 3
+- symbols: [Au, Cu, Au, Rh, Au, Cu, Cu, Rh, Au, Au, Au, Au, Cu, Cu, Cu, Rh, Au, Cu, Rh, Au, Au]
+  rate: 1.40649559E-03
+  run: 3
+- symbols: [Au, Cu, Au, Cu, Cu, Au, Au, Cu, Cu, Rh, Au, Au, Au, Au, Cu, Rh, Au, Cu, Cu, Rh, Cu]
+  rate: 6.54176915E-06
+  run: 3
+- symbols: [Cu, Au, Au, Rh, Cu, Au, Au, Cu, Cu, Rh, Au, Au, Cu, Au, Cu, Au, Au, Cu, Cu, Cu, Cu]
+  rate: 9.06721520E-04
+  run: 3
+- symbols: [Cu, Cu, Cu, Au, Au, Au, Au, Cu, Au, Cu, Au, Au, Rh, Au, Cu, Rh, Au, Cu, Rh, Rh, Au]
+  rate: 6.13233640E-05
+  run: 3
+- symbols: [Au, Cu, Rh, Cu, Rh, Cu, Au, Rh, Au, Au, Au, Au, Cu, Au, Cu, Rh, Au, Cu, Au, Rh, Au]
+  rate: 3.96686418E-02
+  run: 3
+- symbols: [Cu, Au, Au, Rh, Cu, Au, Au, Cu, Cu, Cu, Au, Au, Cu, Au, Cu, Au, Au, Cu, Cu, Cu, Rh]
+  rate: 6.97819090E-04
+  run: 3
+- symbols: [Rh, Au, Cu, Rh, Cu, Au, Au, Cu, Cu, Rh, Au, Au, Cu, Au, Cu, Au, Au, Cu, Au, Rh, Au]
+  rate: 3.58900756E-02
+  run: 3
+- symbols: [Au, Cu, Au, Au, Cu, Au, Au, Rh, Au, Au, Cu, Au, Cu, Au, Au, Rh, Au, Cu, Au, Rh, Cu]
+  rate: 2.77503318E-08
+  run: 3
+- symbols: [Au, Cu, Au, Cu, Cu, Cu, Au, Rh, Au, Au, Cu, Au, Cu, Au, Cu, Rh, Cu, Cu, Cu, Rh, Au]
+  rate: 6.30171539E-06
+  run: 3
+- symbols: [Rh, Cu, Rh, Au, Au, Rh, Au, Au, Rh, Au, Au, Rh, Rh, Rh, Cu, Au, Rh, Rh, Rh, Au, Cu]
+  rate: 8.74782867E-02
+  run: 4
+- symbols: [Au, Cu, Au, Rh, Cu, Au, Cu, Cu, Rh, Cu, Cu, Rh, Cu, Au, Au, Au, Au, Rh, Cu, Rh, Cu]
+  rate: 1.96181697E-02
+  run: 4
+- symbols: [Au, Cu, Au, Cu, Rh, Rh, Au, Cu, Rh, Au, Cu, Cu, Cu, Rh, Cu, Cu, Cu, Rh, Rh, Au, Rh]
+  rate: 2.32945383E-03
+  run: 4
+- symbols: [Au, Au, Au, Au, Au, Cu, Rh, Cu, Rh, Cu, Au, Rh, Cu, Au, Au, Au, Au, Au, Rh, Au, Au]
+  rate: 8.67241760E-09
+  run: 4
+- symbols: [Rh, Rh, Cu, Rh, Au, Cu, Rh, Au, Rh, Au, Au, Rh, Cu, Cu, Au, Au, Rh, Au, Au, Au, Rh]
+  rate: 1.59448011E-01
+  run: 4
+- symbols: [Rh, Rh, Cu, Rh, Rh, Cu, Cu, Au, Rh, Rh, Cu, Au, Cu, Au, Au, Cu, Cu, Au, Rh, Cu, Au]
+  rate: 3.64812286E-01
+  run: 4
+- symbols: [Cu, Cu, Rh, Cu, Rh, Rh, Rh, Rh, Rh, Cu, Cu, Cu, Au, Au, Au, Au, Cu, Rh, Cu, Rh, Cu]
+  rate: 1.81840148E+00
+  run: 4
+- symbols: [Cu, Cu, Cu, Cu, Au, Rh, Rh, Rh, Au, Cu, Au, Cu, Cu, Au, Rh, Au, Au, Au, Cu, Rh, Au]
+  rate: 3.46817210E-03
+  run: 4
+- symbols: [Cu, Cu, Au, Cu, Au, Rh, Rh, Rh, Au, Au, Au, Au, Rh, Rh, Cu, Cu, Rh, Au, Rh, Rh, Au]
+  rate: 1.08626752E-02
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Au, Rh, Au, Rh, Au, Cu, Au, Au, Rh, Cu, Au, Rh, Rh, Rh, Cu]
+  rate: 2.85793798E-07
+  run: 4
+- symbols: [Au, Au, Au, Au, Au, Rh, Au, Rh, Au, Rh, Au, Cu, Au, Au, Rh, Cu, Cu, Rh, Rh, Cu, Rh]
+  rate: 2.65030951E-07
+  run: 4
+- symbols: [Au, Cu, Au, Cu, Rh, Cu, Au, Cu, Rh, Au, Cu, Rh, Au, Au, Au, Au, Au, Rh, Cu, Rh, Cu]
+  rate: 2.19111794E-04
+  run: 4
+- symbols: [Au, Cu, Au, Au, Cu, Cu, Au, Rh, Au, Rh, Cu, Cu, Au, Au, Rh, Cu, Au, Rh, Rh, Rh, Cu]
+  rate: 4.23798958E-06
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Au, Rh, Au, Cu, Rh, Au, Rh, Rh, Cu, Cu, Rh, Au, Rh, Rh, Au]
+  rate: 7.98840605E-07
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Au, Rh, Au, Rh, Au, Cu, Au, Au, Rh, Au, Au, Rh, Rh, Au, Cu]
+  rate: 6.16490004E-08
+  run: 4
+- symbols: [Au, Au, Au, Cu, Rh, Rh, Au, Au, Rh, Au, Cu, Cu, Cu, Rh, Cu, Cu, Cu, Rh, Au, Au, Rh]
+  rate: 1.65373790E-05
+  run: 4
+- symbols: [Au, Cu, Au, Cu, Rh, Rh, Au, Cu, Rh, Au, Cu, Cu, Cu, Cu, Cu, Au, Au, Rh, Cu, Rh, Au]
+  rate: 2.66314256E-04
+  run: 4
+- symbols: [Au, Cu, Cu, Au, Cu, Rh, Au, Rh, Au, Rh, Au, Cu, Au, Au, Rh, Cu, Au, Rh, Cu, Rh, Cu]
+  rate: 1.75144701E-04
+  run: 4
+- symbols: [Au, Au, Au, Cu, Rh, Rh, Rh, Rh, Au, Au, Au, Au, Rh, Rh, Cu, Cu, Rh, Au, Rh, Rh, Cu]
+  rate: 2.24896719E-04
+  run: 4
+- symbols: [Au, Rh, Au, Cu, Rh, Rh, Au, Au, Rh, Au, Rh, Au, Rh, Rh, Cu, Cu, Rh, Au, Rh, Rh, Cu]
+  rate: 8.82623473E-02
+  run: 4
+- symbols: [Au, Au, Au, Cu, Rh, Rh, Rh, Rh, Au, Au, Rh, Au, Rh, Rh, Cu, Cu, Rh, Au, Rh, Cu, Cu]
+  rate: 1.55664678E-04
+  run: 4
+- symbols: [Au, Au, Au, Au, Rh, Rh, Au, Rh, Au, Rh, Au, Cu, Au, Au, Rh, Au, Au, Rh, Au, Au, Cu]
+  rate: 3.09656692E-07
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Au, Rh, Rh, Au, Cu, Au, Au, Au, Au, Cu, Au, Rh, Cu, Rh, Cu]
+  rate: 3.23694108E-08
+  run: 4
+- symbols: [Au, Cu, Au, Cu, Au, Cu, Au, Cu, Rh, Au, Cu, Rh, Cu, Rh, Rh, Cu, Cu, Rh, Au, Au, Rh]
+  rate: 1.08559355E-03
+  run: 4
+- symbols: [Au, Au, Au, Cu, Rh, Rh, Rh, Rh, Au, Cu, Au, Au, Rh, Au, Cu, Cu, Rh, Au, Rh, Rh, Cu]
+  rate: 1.33128912E-04
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Cu, Rh, Au, Rh, Au, Rh, Au, Au, Rh, Au, Au, Rh, Rh, Au, Cu]
+  rate: 3.07534197E-07
+  run: 4
+- symbols: [Cu, Au, Au, Au, Cu, Rh, Au, Rh, Au, Rh, Au, Cu, Au, Au, Rh, Au, Au, Rh, Rh, Au, Rh]
+  rate: 3.13884086E-05
+  run: 4
+- symbols: [Au, Cu, Au, Au, Cu, Rh, Au, Rh, Au, Rh, Au, Cu, Au, Au, Rh, Au, Au, Rh, Cu, Rh, Rh]
+  rate: 5.70256532E-06
+  run: 4
+- symbols: [Au, Au, Cu, Au, Rh, Rh, Au, Rh, Rh, Au, Cu, Au, Au, Au, Au, Cu, Au, Rh, Cu, Rh, Cu]
+  rate: 2.95545157E-05
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Au, Cu, Rh, Au, Cu, Rh, Cu, Rh, Cu, Cu, Cu, Cu, Au, Au, Rh]
+  rate: 1.00518825E-07
+  run: 4
+- symbols: [Au, Au, Au, Cu, Cu, Rh, Rh, Cu, Au, Au, Rh, Au, Rh, Rh, Cu, Cu, Rh, Au, Rh, Cu, Cu]
+  rate: 7.81040921E-05
+  run: 4
+- symbols: [Au, Au, Au, Cu, Rh, Rh, Cu, Rh, Au, Au, Rh, Rh, Rh, Rh, Cu, Cu, Rh, Au, Cu, Rh, Rh]
+  rate: 1.85583969E-04
+  run: 4
+- symbols: [Au, Cu, Au, Au, Cu, Rh, Au, Au, Rh, Au, Au, Au, Au, Au, Au, Cu, Au, Rh, Cu, Rh, Cu]
+  rate: 1.83455601E-07
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Cu, Rh, Rh, Au, Cu, Au, Au, Au, Au, Cu, Au, Rh, Au, Rh, Cu]
+  rate: 3.04840511E-08
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Au, Rh, Rh, Au, Cu, Au, Cu, Au, Au, Cu, Cu, Rh, Cu, Au, Rh]
+  rate: 3.14250232E-08
+  run: 4
+- symbols: [Au, Cu, Au, Au, Au, Cu, Au, Cu, Rh, Au, Rh, Rh, Cu, Rh, Rh, Cu, Rh, Au, Rh, Cu, Cu]
+  rate: 6.71922999E-05
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Au, Cu, Au, Rh, Au, Cu, Au, Rh, Rh, Au, Au, Rh, Cu, Rh, Rh]
+  rate: 2.18888828E-07
+  run: 4
+- symbols: [Au, Au, Rh, Cu, Rh, Cu, Cu, Rh, Au, Au, Rh, Rh, Rh, Rh, Cu, Cu, Rh, Au, Cu, Rh, Cu]
+  rate: 8.92765991E-02
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Rh, Cu, Au, Cu, Rh, Cu, Rh, Rh, Cu, Cu, Rh, Au, Rh, Cu, Cu]
+  rate: 1.64541842E-06
+  run: 4
+- symbols: [Au, Au, Rh, Au, Cu, Rh, Au, Rh, Rh, Rh, Cu, Au, Cu, Au, Au, Cu, Cu, Rh, Cu, Au, Rh]
+  rate: 4.50725165E-03
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Au, Rh, Cu, Au, Au, Au, Cu, Au, Au, Cu, Cu, Au, Rh, Cu, Cu]
+  rate: 9.93113601E-10
+  run: 4
+- symbols: [Au, Rh, Au, Cu, Cu, Rh, Rh, Cu, Au, Au, Rh, Au, Au, Rh, Cu, Cu, Rh, Au, Cu, Rh, Rh]
+  rate: 8.73664328E-02
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Cu, Rh, Rh, Au, Cu, Au, Cu, Au, Au, Cu, Cu, Rh, Au, Rh, Cu]
+  rate: 4.69180899E-08
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Rh, Cu, Au, Cu, Rh, Au, Rh, Rh, Cu, Au, Rh, Au, Rh, Cu, Cu]
+  rate: 1.07086574E-06
+  run: 4
+- symbols: [Au, Cu, Au, Au, Cu, Rh, Au, Rh, Rh, Au, Cu, Au, Rh, Au, Au, Cu, Cu, Rh, Cu, Au, Rh]
+  rate: 1.09584727E-05
+  run: 4
+- symbols: [Au, Au, Au, Au, Rh, Rh, Rh, Cu, Au, Au, Rh, Au, Rh, Rh, Cu, Cu, Rh, Au, Rh, Cu, Cu]
+  rate: 4.15808033E-06
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Au, Cu, Rh, Rh, Rh, Cu, Au, Cu, Au, Au, Cu, Cu, Rh, Cu, Au, Rh]
+  rate: 4.02858520E-08
+  run: 4
+- symbols: [Au, Cu, Rh, Au, Cu, Rh, Au, Rh, Rh, Rh, Cu, Au, Cu, Au, Au, Cu, Cu, Rh, Cu, Au, Rh]
+  rate: 1.92546172E-02
+  run: 4
+- symbols: [Au, Rh, Au, Au, Cu, Rh, Cu, Cu, Au, Cu, Rh, Cu, Rh, Rh, Cu, Cu, Rh, Au, Rh, Au, Cu]
+  rate: 4.52106426E-03
+  run: 4
+- symbols: [Au, Au, Au, Au, Cu, Rh, Rh, Cu, Au, Cu, Cu, Au, Rh, Rh, Cu, Cu, Cu, Rh, Cu, Au, Rh]
+  rate: 2.19668213E-07
+  run: 4
