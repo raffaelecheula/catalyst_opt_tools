@@ -30,8 +30,8 @@ def main():
 
     # Parameters.
     miller_index = "100" # 100 | 111
-    elements = ["Rh", "Cu", "Au"] # Elements of the surface.
-    n_eval = 50 # Number of rate evaluations per run.
+    element_pool = ["Rh", "Cu", "Au"] # Possible elements of the surface.
+    n_eval = 50 # Number of structures evaluated per run.
     n_runs = 5 # Number of search runs.
     random_seed = 42 # Random seed for reproducibility.
     search_name = "RandomSearch" # Name of the search method.
@@ -56,28 +56,34 @@ def main():
     atoms_list, n_atoms_surf = get_atoms_from_template_db(miller_index=miller_index)
     
     # Parameters for the search.
-    search_params = {}
+    search_kwargs = {}
+    
+    # Parameters for reaction rate function.
+    reaction_rate_kwargs = {
+        "atoms_list": atoms_list,
+        "features_bulk": features_bulk,
+        "features_gas": features_gas,
+        "n_atoms_surf": n_atoms_surf,
+        "model": model,
+        "model_params": model_params,
+        "preproc_params": preproc_params,
+        "miller_index": miller_index,
+    }
     
     # Run multiple searches.
     data_all = []
-    for run in range(n_runs):
-        print_title(f"{search_name}: Run {run}")
+    for run_id in range(n_runs):
+        print_title(f"{search_name}: Run {run_id}")
         data_run = run_random_search(
             reaction_rate_fun=reaction_rate_of_RDS_from_symbols,
-            elements=elements,
+            reaction_rate_kwargs=reaction_rate_kwargs,
+            element_pool=element_pool,
             n_atoms_surf=n_atoms_surf,
             n_eval=n_eval,
-            run=run,
+            run_id=run_id,
             random_seed=random_seed,
-            atoms_list=atoms_list,
-            features_bulk=features_bulk,
-            features_gas=features_gas,
-            model=model,
-            model_params=model_params,
-            preproc_params=preproc_params,
-            miller_index=miller_index,
             print_results=print_results,
-            search_params=search_params,
+            search_kwargs=search_kwargs,
         )
         # Append run data to all data.
         data_all += data_run
@@ -115,20 +121,14 @@ def main():
 
 def run_random_search(
     reaction_rate_fun: callable,
-    elements: list,
+    reaction_rate_kwargs: dict,
+    element_pool: list,
     n_atoms_surf: int,
     n_eval: int,
-    run: int,
+    run_id: int,
     random_seed: int,
-    atoms_list: list,
-    features_bulk: dict,
-    features_gas: dict,
-    model: object,
-    model_params: dict,
-    preproc_params: dict,
-    miller_index: str,
     print_results: bool = True,
-    search_params: dict = {},
+    search_kwargs: dict = {},
 ):
     """ 
     Run a random search.
@@ -137,23 +137,13 @@ def run_random_search(
     # Prepare data storage for the run.
     data_run = []
     # Random search of surface with highest reaction rate.
-    random.seed(random_seed+run)
+    random.seed(random_seed+run_id)
     for jj in range(n_eval):
         # Get elements for the surface.
-        symbols = random.choices(population=elements, k=n_atoms_surf)
+        symbols = random.choices(population=element_pool, k=n_atoms_surf)
         # Calculate reaction rate.
-        rate = reaction_rate_fun(
-            symbols=symbols,
-            atoms_list=atoms_list,
-            features_bulk=features_bulk,
-            features_gas=features_gas,
-            n_atoms_surf=n_atoms_surf,
-            model=model,
-            model_params=model_params,
-            preproc_params=preproc_params,
-            miller_index=miller_index,
-        )
-        data_run.append({"symbols": symbols, "rate": rate, "run": run})
+        rate = reaction_rate_fun(symbols=symbols, **reaction_rate_kwargs)
+        data_run.append({"symbols": symbols, "rate": rate, "run": run_id})
         # Print results to screen.
         if print_results is True:
             print(f"Symbols =", ",".join(symbols))
@@ -162,7 +152,7 @@ def run_random_search(
     if print_results is True:
         data_best = sorted(data_run, key=lambda xx: xx["rate"], reverse=True)[0]
         rate_best, symbols_best = data_best["rate"], data_best["symbols"]
-        print(f"Best Structure of run {run}:")
+        print(f"Best Structure of run {run_id}:")
         print(f"Symbols =", ",".join(symbols_best))
         print(f"Reaction Rate = {rate_best:+7.3e} [1/s]")
     # Return run data.

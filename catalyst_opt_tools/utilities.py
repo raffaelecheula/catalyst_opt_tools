@@ -40,8 +40,8 @@ def update_atoms_list(
     atoms_list: Atoms,
     features_bulk: dict,
     features_gas: dict,
-    n_atoms_surf: int = None,
     symbols: list = None,
+    n_atoms_surf: int = None,
 ) -> None:
     """
     Update atoms list with new symbols and calculate corresponding features.

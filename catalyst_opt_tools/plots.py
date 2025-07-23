@@ -19,7 +19,7 @@ def plot_cumulative_max_curve(
     y_max: float = None,
     color: str = "crimson",
     alpha_fill: float = 0.2,
-    xlabel: str = "Number of reaction rate evaluations [-]",
+    xlabel: str = "Number of structures evaluated [-]",
     ylabel: str = "Maximum reaction rate [1/s]",
     filename: str = None,
     plot_mean: bool = False,

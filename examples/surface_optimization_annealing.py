@@ -30,8 +30,8 @@ def main():
 
     # Parameters.
     miller_index = "100" # 100 | 111
-    elements = ["Rh", "Cu", "Au"] # Elements of the surface.
-    n_eval = 50 # Number of rate evaluations per run.
+    element_pool = ["Rh", "Cu", "Au"] # Possible elements of the surface.
+    n_eval = 50 # Number of structures evaluated per run.
     n_runs = 5 # Number of search runs.
     random_seed = 42 # Random seed for reproducibility.
     search_name = "DualAnnealing" # Name of the search method.
@@ -56,28 +56,34 @@ def main():
     atoms_list, n_atoms_surf = get_atoms_from_template_db(miller_index=miller_index)
     
     # Parameters for the search.
-    search_params = {}
+    search_kwargs = {}
+    
+    # Parameters for reaction rate function.
+    reaction_rate_kwargs = {
+        "atoms_list": atoms_list,
+        "features_bulk": features_bulk,
+        "features_gas": features_gas,
+        "n_atoms_surf": n_atoms_surf,
+        "model": model,
+        "model_params": model_params,
+        "preproc_params": preproc_params,
+        "miller_index": miller_index,
+    }
     
     # Run multiple searches.
     data_all = []
-    for run in range(n_runs):
-        print_title(f"{search_name}: Run {run}")
+    for run_id in range(n_runs):
+        print_title(f"{search_name}: Run {run_id}")
         data_run = run_dual_annealing(
             reaction_rate_fun=reaction_rate_of_RDS_from_symbols,
-            elements=elements,
+            reaction_rate_kwargs=reaction_rate_kwargs,
+            element_pool=element_pool,
             n_atoms_surf=n_atoms_surf,
             n_eval=n_eval,
-            run=run,
+            run_id=run_id,
             random_seed=random_seed,
-            atoms_list=atoms_list,
-            features_bulk=features_bulk,
-            features_gas=features_gas,
-            model=model,
-            model_params=model_params,
-            preproc_params=preproc_params,
-            miller_index=miller_index,
             print_results=print_results,
-            search_params=search_params,
+            search_kwargs=search_kwargs,
         )
         # Append run data to all data.
         data_all += data_run
@@ -115,20 +121,14 @@ def main():
 
 def run_dual_annealing(
     reaction_rate_fun: callable,
-    elements: list,
+    reaction_rate_kwargs: dict,
+    element_pool: list,
     n_atoms_surf: int,
     n_eval: int,
-    run: int,
+    run_id: int,
     random_seed: int,
-    atoms_list: list,
-    features_bulk: dict,
-    features_gas: dict,
-    model: object,
-    model_params: dict,
-    preproc_params: dict,
-    miller_index: str,
     print_results: bool = True,
-    search_params: dict = {},
+    search_kwargs: dict = {},
 ):
     """ 
     Run a dual annealing.
@@ -140,21 +140,11 @@ def run_dual_annealing(
     def objective_fun(xx):
         # xx is an array of floats, map to nearest integer.
         x_int = [int(round(ii)) for ii in xx]
-        symbols = [elements[ii] for ii in x_int]
+        symbols = [element_pool[ii] for ii in x_int]
         # Calculate reaction rate of the rate-determining step.
-        rate = reaction_rate_fun(
-            symbols=symbols,
-            atoms_list=atoms_list,
-            features_bulk=features_bulk,
-            features_gas=features_gas,
-            n_atoms_surf=n_atoms_surf,
-            model=model,
-            model_params=model_params,
-            preproc_params=preproc_params,
-            miller_index=miller_index,
-        )
+        rate = reaction_rate_fun(symbols=symbols, **reaction_rate_kwargs)
         if len(data_run) < n_eval:
-            data_run.append({"symbols": symbols, "rate": rate, "run": run})
+            data_run.append({"symbols": symbols, "rate": rate, "run": run_id})
         # Print results to screen.
         if print_results is True:
             print(f"Symbols =", ",".join(symbols))
@@ -162,19 +152,19 @@ def run_dual_annealing(
         # Return negative rate.
         return -rate
     # Perform dual annealing optimization.
-    bounds = [(0, len(elements)-1)] * n_atoms_surf
+    bounds = [(0, len(element_pool)-1)] * n_atoms_surf
     result = dual_annealing(
         func=objective_fun,
         bounds=bounds,
         maxfun=n_eval,
-        seed=random_seed+run,
+        seed=random_seed+run_id,
     )
     # Get best structure.
     if print_results is True:
         indices = [int(round(ii)) for ii in result.x]
-        symbols_best = [elements[ii] for ii in indices]
+        symbols_best = [element_pool[ii] for ii in indices]
         rate_best = -result.fun
-        print(f"Best Structure of run {run}:")
+        print(f"Best Structure of run {run_id}:")
         print(f"Symbols =", ",".join(symbols_best))
         print(f"Reaction Rate = {rate_best:+7.3e} [1/s]")
     # Return run data.
