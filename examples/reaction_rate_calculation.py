@@ -70,7 +70,7 @@ def main():
 # -------------------------------------------------------------------------------------
 
 def get_graph_model_parameters() -> tuple:
-    """ 
+    """
     Get parameters for the model and preprocessing.
     """
     # Graph model settings.
@@ -93,7 +93,7 @@ def get_graph_model_parameters() -> tuple:
 # -------------------------------------------------------------------------------------
 
 def get_features_bulk_and_gas() -> tuple:
-    """ 
+    """
     Get features for bulk and gas phase.
     """
     # Read features from yaml files.
@@ -144,7 +144,7 @@ def get_trained_graph_model(
 def get_atoms_from_template_db(
     miller_index: str,
 ):
-    """ 
+    """
     Get atoms from template database.
     """
     # Read atoms objects from templates database.
@@ -172,7 +172,7 @@ def reaction_rate_of_RDS_from_symbols(
     preproc_params: dict,
     miller_index: str,
 ):
-    """ 
+    """
     Get reaction rate of the RDS from the surface symbols.
     """
     # Update elements and features of atoms for predictions.
@@ -233,7 +233,7 @@ def predict_with_graph_model(
     model_params: dict,
     preproc_params: dict,
 ):
-    """ 
+    """
     Get formation energies with a graph model.
     """
     # Preprocess the data.

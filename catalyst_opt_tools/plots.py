@@ -23,7 +23,7 @@ def plot_cumulative_max_curve(
     ylabel: str = "Maximum reaction rate [1/s]",
     filename: str = None,
     plot_mean: bool = False,
-):
+) -> object:
     """
     For each run, calculate the maximum y value reached as a function of the steps
     (evaluations). Then, calculate the mean value between the runs.

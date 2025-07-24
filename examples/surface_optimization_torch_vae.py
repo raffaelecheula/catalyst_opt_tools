@@ -34,7 +34,7 @@ def main():
     n_eval = 500 # Number of structures evaluated per run.
     n_runs = 1 # Number of search runs.
     random_seed = 42 # Random seed for reproducibility.
-    search_name = "VarAutoEnc" # Name of the search method.
+    search_name = "TorchVAE" # Name of the search method.
 
     # Results files.
     filename_yaml = f"results/{search_name}_{miller_index}.yaml"
@@ -82,7 +82,7 @@ def main():
     data_all = []
     for run_id in range(n_runs):
         print_title(f"{search_name}: Run {run_id}")
-        data_run = run_vae_search(
+        data_run = run_generative_VAE_model(
             reaction_rate_fun=reaction_rate_of_RDS_from_symbols,
             reaction_rate_kwargs=reaction_rate_kwargs,
             element_pool=element_pool,
@@ -124,10 +124,10 @@ def main():
         gui.run()
 
 # -------------------------------------------------------------------------------------
-# RUN VAE SEARCH
+# RUN GENERATIVE VAE MODEL
 # -------------------------------------------------------------------------------------
 
-def run_vae_search(
+def run_generative_VAE_model(
     reaction_rate_fun: callable,
     reaction_rate_kwargs: dict,
     element_pool: list,
@@ -137,16 +137,17 @@ def run_vae_search(
     random_seed: int,
     print_results: bool = True,
     search_kwargs: dict = {},
+    data_input: list = None,
 ):
-    """ 
-    Run a VAE search.
+    """
+    Run a structure optimization with a generative PyTorch VAE model.
     """
     import random
+    # Prepare data storage for the run.
+    data_run = data_input or []
     # Get parameters for initial random search.
     n_random_samples = search_kwargs.pop("n_random_samples")
     n_random_best = search_kwargs.pop("n_random_best")
-    # Prepare data storage for the run.
-    data_run = []
     # Random search of surface with highest reaction rate.
     random.seed(random_seed+run_id)
     for jj in range(n_random_samples):
@@ -214,9 +215,9 @@ class VAE(nn.Module):
         optimizer: object = optim.Adam,
         optimizer_kwargs: dict = {"lr": 1e-4},
         n_epochs: int = 100,
-        loss_type: str = "CE", # CE | BCE | MSE
+        loss_type: str = "BCE", # CE | BCE | MSE
         kl_weight: float = 1e-2,
-        final_activation: str = "softmax", # softmax | sigmoid | softmax_per_atom
+        final_activation: str = "sigmoid", # sigmoid | softmax | softmax_per_atom
     ):
         """
         Variational AutoEncoder (VAE) model.
@@ -297,7 +298,7 @@ class VAE(nn.Module):
         return loss + self.kl_weight * kl
 
     def train_model(self, dataloader):
-        """ 
+        """
         Train the model.
         """
         # Prepare optimizer.
@@ -358,7 +359,7 @@ def get_dataloader_from_data_list(
     key_X: str = "symbols",
     batch_size: int = 8,
 ):
-    """ 
+    """
     Get a PyTorch DataLoader from a dictionary of data.
     """
     # Transform elements to one-hot encoded vectors.

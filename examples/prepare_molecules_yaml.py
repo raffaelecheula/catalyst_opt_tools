@@ -16,7 +16,7 @@ def get_atoms_mol(
     species: str,
     vacuum: float = 12.0,
 ):
-    """ 
+    """
     Get atoms from molecule name.
     """
     # Get molecules from name.

@@ -84,6 +84,7 @@ def main():
             random_seed=random_seed,
             print_results=print_results,
             search_kwargs=search_kwargs,
+            data_input=None,
         )
         # Append run data to all data.
         data_all += data_run
@@ -129,13 +130,14 @@ def run_dual_annealing(
     random_seed: int,
     print_results: bool = True,
     search_kwargs: dict = {},
+    data_input: list = None,
 ):
-    """ 
-    Run a dual annealing.
+    """
+    Run a structure optimization with the dual annealing method.
     """
     from scipy.optimize import dual_annealing
     # Prepare data storage for the run.
-    data_run = []
+    data_run = data_input or []
     # Define objective function.
     def objective_fun(xx):
         # xx is an array of floats, map to nearest integer.

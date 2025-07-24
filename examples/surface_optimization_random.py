@@ -84,6 +84,7 @@ def main():
             random_seed=random_seed,
             print_results=print_results,
             search_kwargs=search_kwargs,
+            data_input=None,
         )
         # Append run data to all data.
         data_all += data_run
@@ -129,13 +130,14 @@ def run_random_search(
     random_seed: int,
     print_results: bool = True,
     search_kwargs: dict = {},
+    data_input: list = None,
 ):
-    """ 
-    Run a random search.
+    """
+    Run a structure optimization with the random search method.
     """
     import random
     # Prepare data storage for the run.
-    data_run = []
+    data_run = data_input or []
     # Random search of surface with highest reaction rate.
     random.seed(random_seed+run_id)
     for jj in range(n_eval):

@@ -77,7 +77,7 @@ def main():
     data_all = []
     for run_id in range(n_runs):
         print_title(f"{search_name}: Run {run_id}")
-        data_run = run_bayesian_optimization(
+        data_run = run_Bayesian_optimization(
             reaction_rate_fun=reaction_rate_of_RDS_from_symbols,
             reaction_rate_kwargs=reaction_rate_kwargs,
             element_pool=element_pool,
@@ -87,6 +87,7 @@ def main():
             random_seed=random_seed,
             print_results=print_results,
             search_kwargs=search_kwargs,
+            data_input=None,
         )
         # Append run data to all data.
         data_all += data_run
@@ -122,7 +123,7 @@ def main():
 # RUN BAYESIAN OPTIMIZATION
 # -------------------------------------------------------------------------------------
 
-def run_bayesian_optimization(
+def run_Bayesian_optimization(
     reaction_rate_fun: callable,
     reaction_rate_kwargs: dict,
     element_pool: list,
@@ -132,15 +133,16 @@ def run_bayesian_optimization(
     random_seed: int,
     print_results: bool = True,
     search_kwargs: dict = {},
+    data_input: list = None,
 ):
-    """ 
-    Run a Bayesian optimization.
+    """
+    Run a structure optimization with the Bayesian optimization method.
     """
     from skopt import gp_minimize
     from skopt.space import Categorical
     from skopt.utils import use_named_args
     # Prepare data storage for the run.
-    data_run = []
+    data_run = data_input or []
     # Define the search space.
     space = [Categorical(element_pool, name=f"el_{ii}") for ii in range(n_atoms_surf)]
     # Objective function.

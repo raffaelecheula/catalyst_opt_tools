@@ -202,7 +202,7 @@ def get_adsorption_sites(
 def rotated_lists(
     list_of_lists: list,
 ) -> list:
-    """ 
+    """
     Get rotated lists from the input list.
     """
     rotated = [

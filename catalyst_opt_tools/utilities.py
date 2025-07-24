@@ -88,7 +88,7 @@ def preprocess_features(
 def print_title(
     string: str,
     width: int = 100,
-):
+) -> None:
     """
     Print title.
     """
