@@ -56,7 +56,6 @@ species-adsorbates:
     temperature-ranges: [200, 2000]
     data:
     - [+2.22072653E+00, +1.87780105E-02, -2.59855098E-05, +1.90490654E-08, -5.78405870E-12, +1.46021059E+03, -9.52397120E+00]
-
 - name: CO2(X)
   composition: {X: 1, C: 1, O: 2}
   size: 1

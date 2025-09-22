@@ -7,7 +7,7 @@ import numpy as np
 from ase.gui.gui import GUI
 
 from ase_ml_models.yaml import write_to_yaml
-from catalyst_opt_tools.utilities import update_atoms_list, print_title
+from catalyst_opt_tools.utilities import update_atoms_list, print_title, parallel_runs
 from catalyst_opt_tools.plots import plot_cumulative_max_curve
 
 from reaction_rate_calculation import (
@@ -17,6 +17,7 @@ from reaction_rate_calculation import (
     get_atoms_from_template_db,
     reaction_rate_of_RDS_from_symbols,
 )
+from surface_optimization_random import run_random_search
 
 # -------------------------------------------------------------------------------------
 # MAIN
@@ -38,7 +39,7 @@ def main():
     search_name = "RandomSearch" # Name of the search method.
 
     # Results files.
-    filename_yaml = f"results/{search_name}_{miller_index}.yaml"
+    directory_yaml = f"results/{search_name}_{miller_index}"
     filename_png = f"results/{search_name}_{miller_index}.png"
 
     # Get model parameters and features.
@@ -71,37 +72,48 @@ def main():
         "miller_index": miller_index,
     }
     
-    # Reset YAML file.
+    # Create directory for YAML files.
     if write_results is True:
-        open(file=filename_yaml, mode="w").close()
+        os.makedirs(name=directory_yaml, exist_ok=True)
     
     # Data from previous run.
     data_input_list = [None] * n_runs
     
     # Run multiple searches.
-    data_run_list = []
+    args_list = []
     for run_id in range(n_runs):
-        print_title(f"{search_name}: Run {run_id}")
-        # Run search.
-        data_run = run_random_search(
-            reaction_rate_fun=reaction_rate_of_RDS_from_symbols,
-            reaction_rate_kwargs=reaction_rate_kwargs,
-            element_pool=element_pool,
-            n_atoms_surf=n_atoms_surf,
-            n_eval=n_eval,
-            run_id=run_id,
-            random_seed=random_seed+run_id,
-            print_results=print_results,
-            write_results=write_results,
-            filename_yaml=filename_yaml,
-            search_kwargs=search_kwargs,
-            data_input=data_input_list[run_id],
-        )
-        # Append run data to list.
-        data_run_list.append(data_run)
+        # Name of the YAML file for this run.
+        filename_yaml = f"{directory_yaml}/{run_id:02d}.yaml"
+        # Reset YAML file.
+        if write_results is True:
+            open(file=filename_yaml, mode="w").close()
+        # Run optimization.
+        args_list.append([
+            reaction_rate_of_RDS_from_symbols,
+            reaction_rate_kwargs,
+            element_pool,
+            n_atoms_surf,
+            n_eval,
+            run_id,
+            random_seed+run_id,
+            print_results,
+            write_results,
+            filename_yaml,
+            search_kwargs,
+            data_input_list[run_id],
+        ])
+    
+    # Execute parallel runs.
+    data_run_list = parallel_runs(
+        function=run_random_search,
+        args_list=args_list,
+        method="multiprocessing",
+        n_jobs=len(args_list),
+        with_tqdm=False,
+    )
     # Combine data from all runs.
     data_all = [data for data_run in data_run_list for data in data_run]
-        
+    
     # Plot cumulative maximum rate curve.
     plot_cumulative_max_curve(data_all=data_all, filename=filename_png)
     
@@ -124,58 +136,6 @@ def main():
     if show_atoms is True:
         gui = GUI(atoms_list)
         gui.run()
-
-# -------------------------------------------------------------------------------------
-# RUN RANDOM SEARCH
-# -------------------------------------------------------------------------------------
-
-def run_random_search(
-    reaction_rate_fun: callable,
-    reaction_rate_kwargs: dict,
-    element_pool: list,
-    n_atoms_surf: int,
-    n_eval: int,
-    run_id: int,
-    random_seed: int,
-    print_results: bool = True,
-    write_results: bool = True,
-    filename_yaml: str = "RandomSearch.yaml",
-    search_kwargs: dict = {},
-    data_input: list = [],
-):
-    """
-    Run a structure optimization with the random search method.
-    """
-    import random
-    random.seed(random_seed)
-    # Prepare data storage for the run.
-    data_run = data_input or []
-    if write_results is True and len(data_run) > 0:
-        write_to_yaml(filename=filename_yaml, data=data_run, mode="a")
-    # Random search of surface with highest reaction rate.
-    for jj in range(n_eval):
-        # Get elements for the surface.
-        symbols = random.choices(population=element_pool, k=n_atoms_surf)
-        # Calculate reaction rate.
-        rate = reaction_rate_fun(symbols=symbols, **reaction_rate_kwargs)
-        data = {"symbols": symbols, "rate": rate, "run": run_id}
-        data_run.append(data)
-        # Write results to yaml.
-        if write_results is True:
-            write_to_yaml(filename=filename_yaml, data=[data], mode="a")
-        # Print results to screen.
-        if print_results is True:
-            print(f"Symbols =", ",".join(symbols))
-            print(f"Reaction Rate = {rate:+7.3e} [1/s]")
-    # Get best structure.
-    if print_results is True:
-        data_best = sorted(data_run, key=lambda xx: xx["rate"], reverse=True)[0]
-        rate_best, symbols_best = data_best["rate"], data_best["symbols"]
-        print(f"Best Structure of run {run_id}:")
-        print(f"Symbols =", ",".join(symbols_best))
-        print(f"Reaction Rate = {rate_best:+7.3e} [1/s]")
-    # Return run data.
-    return data_run
 
 # -------------------------------------------------------------------------------------
 # IF NAME MAIN

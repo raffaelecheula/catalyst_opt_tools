@@ -2,6 +2,7 @@
 # IMPORTS
 # -------------------------------------------------------------------------------------
 
+import os
 import numpy as np
 from ase.gui.gui import GUI
 
@@ -70,10 +71,18 @@ def main():
         "miller_index": miller_index,
     }
     
+    # Reset YAML file.
+    if write_results is True:
+        open(file=filename_yaml, mode="w").close()
+    
+    # Data from previous run.
+    data_input_list = [None] * n_runs
+    
     # Run multiple searches.
-    data_all = []
+    data_run_list = []
     for run_id in range(n_runs):
         print_title(f"{search_name}: Run {run_id}")
+        # Run search.
         data_run = run_dual_annealing(
             reaction_rate_fun=reaction_rate_of_RDS_from_symbols,
             reaction_rate_kwargs=reaction_rate_kwargs,
@@ -81,17 +90,17 @@ def main():
             n_atoms_surf=n_atoms_surf,
             n_eval=n_eval,
             run_id=run_id,
-            random_seed=random_seed,
+            random_seed=random_seed+run_id,
             print_results=print_results,
+            write_results=write_results,
+            filename_yaml=filename_yaml,
             search_kwargs=search_kwargs,
-            data_input=None,
+            data_input=data_input_list[run_id],
         )
-        # Append run data to all data.
-        data_all += data_run
-    
-    # Write results to YAML file.
-    if write_results is True:
-        write_to_yaml(filename=filename_yaml, data=data_all)
+        # Append run data to list.
+        data_run_list.append(data_run)
+    # Combine data from all runs.
+    data_all = [data for data_run in data_run_list for data in data_run]
     
     # Plot cumulative maximum rate curve.
     plot_cumulative_max_curve(data_all=data_all, filename=filename_png)
@@ -129,6 +138,8 @@ def run_dual_annealing(
     run_id: int,
     random_seed: int,
     print_results: bool = True,
+    write_results: bool = True,
+    filename_yaml: str = "DualAnnealing.yaml",
     search_kwargs: dict = {},
     data_input: list = None,
 ):
@@ -138,6 +149,8 @@ def run_dual_annealing(
     from scipy.optimize import dual_annealing
     # Prepare data storage for the run.
     data_run = data_input or []
+    if write_results is True and len(data_run) > 0:
+        write_to_yaml(filename=filename_yaml, data=data_run, mode="a")
     # Define objective function.
     def objective_fun(xx):
         # xx is an array of floats, map to nearest integer.
@@ -146,12 +159,16 @@ def run_dual_annealing(
         # Calculate reaction rate of the rate-determining step.
         rate = reaction_rate_fun(symbols=symbols, **reaction_rate_kwargs)
         if len(data_run) < n_eval:
-            data_run.append({"symbols": symbols, "rate": rate, "run": run_id})
-        # Print results to screen.
-        if print_results is True:
-            print(f"Symbols =", ",".join(symbols))
-            print(f"Reaction Rate = {rate:+7.3e} [1/s]")
-        # Return negative rate.
+            data = {"symbols": symbols, "rate": rate, "run": run_id}
+            data_run.append(data)
+            # Write results to yaml.
+            if write_results is True:
+                write_to_yaml(filename=filename_yaml, data=[data], mode="a")
+            # Print results to screen.
+            if print_results is True:
+                print(f"Symbols =", ",".join(symbols))
+                print(f"Reaction Rate = {rate:+7.3e} [1/s]")
+        # Return the negative rate.
         return -rate
     # Perform dual annealing optimization.
     bounds = [(0, len(element_pool)-1)] * n_atoms_surf
@@ -159,7 +176,7 @@ def run_dual_annealing(
         func=objective_fun,
         bounds=bounds,
         maxfun=n_eval,
-        seed=random_seed+run_id,
+        seed=random_seed,
     )
     # Get best structure.
     if print_results is True:
@@ -177,7 +194,12 @@ def run_dual_annealing(
 # -------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
+    import timeit
+    # Run main and measure execution time.
+    time_start = timeit.default_timer()
     main()
+    time_stop = timeit.default_timer()
+    print(f"Execution Time = {time_stop-time_start:6.1f} [s].")
 
 # -------------------------------------------------------------------------------------
 # END

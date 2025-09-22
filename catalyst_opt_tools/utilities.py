@@ -82,6 +82,54 @@ def preprocess_features(
     return features_dict
 
 # -------------------------------------------------------------------------------------
+# PARALLEL RUNS
+# -------------------------------------------------------------------------------------
+
+def parallel_runs(
+    function: callable,
+    args_list: list,
+    method: str = "multiprocessing",
+    n_jobs: int = -1,
+    with_tqdm: bool = False,
+) -> list:
+    """
+    Evaluate a function with parallel jobs.
+    """
+    # Set number of jobs for parallelization.
+    if n_jobs < 0:
+        import os
+        n_jobs = os.cpu_count()
+    # Prepare tqdm progress bar if needed.
+    if with_tqdm is True:
+        from tqdm import tqdm
+        args_list = tqdm(args_list, desc="Run", ncols=100)
+    # Evaluate function with different parallelization methods.
+    if method == "serial":
+        # Evaluate function without parallelization.
+        results = [function(*args) for args in args_list]
+    if method == "multiprocessing":
+        # Evaluate function with multiprocessing.
+        from multiprocessing import Pool
+        with Pool(n_jobs) as pool:
+            results = pool.starmap(function, args_list)
+    elif method == "joblib":
+        # Evaluate function with joblib.
+        from joblib import Parallel, delayed
+        results = Parallel(n_jobs=n_jobs, backend="loky")(
+            delayed(function)(*args) for args in args_list
+        )
+    elif method == "ray":
+        # Evaluate function with ray.
+        import ray
+        if not ray.is_initialized():
+            ray.init(num_cpus=n_jobs)
+        function_ray = ray.remote(function)
+        futures = [function_ray.remote(*args) for args in args_list]
+        results = ray.get(futures)
+    # Return results.
+    return results
+
+# -------------------------------------------------------------------------------------
 # PRINT TITLE
 # -------------------------------------------------------------------------------------
 
