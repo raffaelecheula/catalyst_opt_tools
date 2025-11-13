@@ -7,6 +7,20 @@ from ase import Atoms
 from sklearn.preprocessing import MinMaxScaler
 
 # -------------------------------------------------------------------------------------
+# PRINT TITLE
+# -------------------------------------------------------------------------------------
+
+def print_title(
+    string: str,
+    width: int = 100,
+) -> None:
+    """
+    Print title.
+    """
+    for text in ["-" * width, string.center(width), "-" * width]:
+        print("#", text, "#")
+
+# -------------------------------------------------------------------------------------
 # GET FEATURES
 # -------------------------------------------------------------------------------------
 
@@ -88,9 +102,8 @@ def preprocess_features(
 def parallel_runs(
     function: callable,
     args_list: list,
-    method: str = "multiprocessing",
+    parallel_method: str = "multiprocessing",
     n_jobs: int = -1,
-    with_tqdm: bool = False,
 ) -> list:
     """
     Evaluate a function with parallel jobs.
@@ -99,26 +112,22 @@ def parallel_runs(
     if n_jobs < 0:
         import os
         n_jobs = os.cpu_count()
-    # Prepare tqdm progress bar if needed.
-    if with_tqdm is True:
-        from tqdm import tqdm
-        args_list = tqdm(args_list, desc="Run", ncols=100)
     # Evaluate function with different parallelization methods.
-    if method == "serial":
+    if parallel_method == "serial":
         # Evaluate function without parallelization.
         results = [function(*args) for args in args_list]
-    if method == "multiprocessing":
+    if parallel_method == "multiprocessing":
         # Evaluate function with multiprocessing.
         from multiprocessing import Pool
         with Pool(n_jobs) as pool:
             results = pool.starmap(function, args_list)
-    elif method == "joblib":
+    elif parallel_method == "joblib":
         # Evaluate function with joblib.
         from joblib import Parallel, delayed
         results = Parallel(n_jobs=n_jobs, backend="loky")(
             delayed(function)(*args) for args in args_list
         )
-    elif method == "ray":
+    elif parallel_method == "ray":
         # Evaluate function with ray.
         import ray
         if not ray.is_initialized():
@@ -130,18 +139,25 @@ def parallel_runs(
     return results
 
 # -------------------------------------------------------------------------------------
-# PRINT TITLE
+# GET DATA INPUT FROM YAML
 # -------------------------------------------------------------------------------------
 
-def print_title(
-    string: str,
-    width: int = 100,
-) -> None:
+def get_data_input_from_yaml(
+    filename_input: str,
+    n_input: int,
+    n_runs: int,
+) -> list:
     """
-    Print title.
+    Get list of data input.
     """
-    for text in ["-" * width, string.center(width), "-" * width]:
-        print("#", text, "#")
+    import yaml
+    if filename_input is None:
+        return [None] * n_runs
+    data_all = yaml.safe_load(open(filename_input, "r"))
+    return [
+        [data for data in data_all if data["run"] == run_id][:n_input]
+        for run_id in range(n_runs)
+    ]
 
 # -------------------------------------------------------------------------------------
 # END

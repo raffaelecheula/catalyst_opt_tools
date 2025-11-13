@@ -6,9 +6,9 @@ import os
 import numpy as np
 from ase.gui.gui import GUI
 
-from ase_ml_models.yaml import write_to_yaml
+from catalyst_opt_tools.optimization import run_random_search
 from catalyst_opt_tools.utilities import update_atoms_list, print_title
-from catalyst_opt_tools.plots import plot_cumulative_max_curve
+from catalyst_opt_tools.plots import plot_cumulative_max_curve, plot_half_violins
 
 from reaction_rate_calculation import (
     get_graph_model_parameters,
@@ -25,21 +25,25 @@ from reaction_rate_calculation import (
 def main():
 
     # Control.
-    show_atoms = False
-    print_results = True
     write_results = True
+    print_results = True
+    print_progress = False
+    show_atoms = False
 
     # Parameters.
     miller_index = "100" # 100 | 111
-    element_pool = ["Rh", "Cu", "Au"] # Possible elements of the surface.
-    n_eval = 50 # Number of structures evaluated per run.
-    n_runs = 5 # Number of search runs.
+    element_pool = ["Rh", "Cu", "Au", "Ni", "Pd", "Co"] # Possible surface elements.
+    n_eval = 100 # Number of structures evaluated per run.
+    n_runs = 3 # Number of search runs.
     random_seed = 42 # Random seed for reproducibility.
-    search_name = "BayesianOptimization" # Name of the search method.
+    search_name = "RandomSearch" # Name of the search method.
 
     # Results files.
     filename_yaml = f"results/{search_name}_{miller_index}.yaml"
-    filename_png = f"results/{search_name}_{miller_index}.png"
+    filename_png = f"results/{search_name}_{miller_index}_distr.png"
+
+    # Parameters for the search.
+    search_kwargs = {}
 
     # Get model parameters and features.
     model_params, preproc_params = get_graph_model_parameters()
@@ -55,12 +59,6 @@ def main():
 
     # Get atoms from template database.
     atoms_list, n_atoms_surf = get_atoms_from_template_db(miller_index=miller_index)
-    
-    # Parameters for the search.
-    search_kwargs = {
-        "n_initial_points": 10,
-        "acq_func": "EI",
-    }
     
     # Parameters for reaction rate function.
     reaction_rate_kwargs = {
@@ -86,16 +84,17 @@ def main():
     for run_id in range(n_runs):
         print_title(f"{search_name}: Run {run_id}")
         # Run search.
-        data_run = run_Bayesian_optimization(
+        data_run = run_random_search(
             reaction_rate_fun=reaction_rate_of_RDS_from_symbols,
             reaction_rate_kwargs=reaction_rate_kwargs,
             element_pool=element_pool,
             n_atoms_surf=n_atoms_surf,
             n_eval=n_eval,
             run_id=run_id,
-            random_seed=random_seed+run_id,
-            print_results=print_results,
+            random_seed=random_seed + run_id,
             write_results=write_results,
+            print_results=print_results,
+            print_progress=print_progress,
             filename_yaml=filename_yaml,
             search_kwargs=search_kwargs,
             data_input=data_input_list[run_id],
@@ -104,9 +103,9 @@ def main():
         data_run_list.append(data_run)
     # Combine data from all runs.
     data_all = [data for data_run in data_run_list for data in data_run]
-    
-    # Plot cumulative maximum rate curve.
-    plot_cumulative_max_curve(data_all=data_all, filename=filename_png)
+        
+    # Plot half violins.
+    plot_half_violins(data_all=data_all, filename=filename_png)
     
     # Get best structure from all runs.
     data_best = sorted(data_all, key=lambda xx: xx["rate"], reverse=True)[0]
@@ -127,72 +126,6 @@ def main():
     if show_atoms is True:
         gui = GUI(atoms_list)
         gui.run()
-
-# -------------------------------------------------------------------------------------
-# RUN BAYESIAN OPTIMIZATION
-# -------------------------------------------------------------------------------------
-
-def run_Bayesian_optimization(
-    reaction_rate_fun: callable,
-    reaction_rate_kwargs: dict,
-    element_pool: list,
-    n_atoms_surf: int,
-    n_eval: int,
-    run_id: int,
-    random_seed: int,
-    print_results: bool = True,
-    write_results: bool = True,
-    filename_yaml: str = "BayesianOptimization.yaml",
-    search_kwargs: dict = {},
-    data_input: list = None,
-):
-    """
-    Run a structure optimization with the Bayesian optimization method.
-    """
-    from skopt import gp_minimize
-    from skopt.space import Categorical
-    from skopt.utils import use_named_args
-    # Prepare data storage for the run.
-    data_run = data_input or []
-    if write_results is True and len(data_run) > 0:
-        write_to_yaml(filename=filename_yaml, data=data_run, mode="a")
-    # Define the search space.
-    space = [Categorical(element_pool, name=f"el_{ii}") for ii in range(n_atoms_surf)]
-    # Objective function.
-    @use_named_args(space)
-    def objective_func(**kwargs):
-        # Extract symbol list from kwargs.
-        symbols = [kwargs[f"el_{ii}"] for ii in range(n_atoms_surf)]
-        # Calculate reaction rate of the rate-determining step.
-        rate = reaction_rate_fun(symbols=symbols, **reaction_rate_kwargs)
-        data = {"symbols": symbols, "rate": rate, "run": run_id}
-        data_run.append(data)
-        # Write results to yaml.
-        if write_results is True:
-            write_to_yaml(filename=filename_yaml, data=[data], mode="a")
-        # Print results to screen.
-        if print_results is True:
-            print(f"Symbols =", ",".join(symbols))
-            print(f"Reaction Rate = {rate:+7.3e} [1/s]")
-        # Return the negative rate.
-        return -rate
-    # Run the Bayesian optimization.
-    result = gp_minimize(
-        func=objective_func,
-        dimensions=space,
-        n_calls=n_eval,
-        random_state=random_seed,
-        **search_kwargs,
-    )
-    # Get best structure.
-    if print_results is True:
-        symbols_best = [x for x in result.x]
-        rate_best = -result.fun
-        print(f"Best Structure of run {run_id}:")
-        print(f"Symbols =", ",".join(symbols_best))
-        print(f"Reaction Rate = {rate_best:+7.3e} [1/s]")
-    # Return run data.
-    return data_run
 
 # -------------------------------------------------------------------------------------
 # IF NAME MAIN

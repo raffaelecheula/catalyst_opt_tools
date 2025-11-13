@@ -31,13 +31,21 @@ def main():
     write_to_db = True
 
     # Surface and species type.
-    miller_index = "111" # 100 | 111
+    miller_index = "100" # 100 | 111
     species_type = "adsorbates" # adsorbates | reactions
 
+    # Databases names.
+    db_old_name_list = [
+        f"databases/atoms_{species_type}_DFT_database.db",
+        f"databases/atoms_{species_type}_DFT_database_extra.db"
+    ]
+    db_new_name = f"databases/atoms_{species_type}_{miller_index}_DFT_all.db"
+
     # Read atoms from database.
-    db_old_name = f"databases/atoms_{species_type}_DFT_database.db"
-    db_old = connect(db_old_name)
-    atoms_old_list = get_atoms_list_from_db(db_ase=db_old)
+    atoms_old_list = []
+    for db_old_name in db_old_name_list:
+        db_old = connect(db_old_name)
+        atoms_old_list += get_atoms_list_from_db(db_ase=db_old)
 
     # Select species.
     if species_type == "adsorbates":
@@ -59,7 +67,7 @@ def main():
     features_gas = yaml.safe_load(open("features_gas.yaml", "r"))
     
     # Custom cutoffs for right connectivity.
-    cutoffs_dict = {"Au": 1.70, "Ni": 1.40, "Ga": 1.40}
+    cutoffs_dict = {"Au": 1.70, "Ni": 1.40, "Ga": 1.40, "Fe": 1.50}
     
     # Number of atoms in the metal clusters.
     n_atoms_dict = {"100": 21, "111": 22}
@@ -88,14 +96,13 @@ def main():
             features_bulk=features_bulk,
             features_gas=features_gas,
         )
-        if len(atoms_new)-len(indices_ads) == n_atoms_dict[miller_index]:
+        if len(atoms_new) - len(indices_ads) == n_atoms_dict[miller_index]:
             atoms_list_new.append(atoms_new)
         elif show_wrong is True:
             atoms_new.edit()
     
     # Write atoms to database.
     if write_to_db is True:
-        db_new_name = f"databases/atoms_{species_type}_{miller_index}_DFT.db"
         db_new = connect(db_new_name, append=False)
         write_atoms_list_to_db(
             atoms_list=atoms_list_new,

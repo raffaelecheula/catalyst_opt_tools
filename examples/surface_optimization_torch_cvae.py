@@ -4,11 +4,11 @@
 
 import os
 import numpy as np
-from ase.gui.gui import GUI
 
 from ase_ml_models.yaml import write_to_yaml
-from catalyst_opt_tools.utilities import update_atoms_list, print_title
-from catalyst_opt_tools.plots import plot_cumulative_max_curve
+from catalyst_opt_tools.optimization import print_search_results, print_search_progress
+from catalyst_opt_tools.plots import plot_cumulative_max_curve, plot_half_violins
+from catalyst_opt_tools.utilities import print_title, get_data_input_from_yaml
 
 from reaction_rate_calculation import (
     get_graph_model_parameters,
@@ -25,21 +25,41 @@ from reaction_rate_calculation import (
 def main():
 
     # Control.
-    show_atoms = False
-    print_results = True
     write_results = True
+    print_results = True
+    print_progress = False
 
     # Parameters.
     miller_index = "100" # 100 | 111
-    element_pool = ["Rh", "Cu", "Au"] # Possible elements of the surface.
-    n_eval = 500 # Number of structures evaluated per run.
+    element_pool = ["Rh", "Cu", "Au", "Ni", "Pd", "Co"] # Possible surface elements.
+    n_eval = 1000 # Number of structures evaluated per run.
     n_runs = 1 # Number of search runs.
     random_seed = 42 # Random seed for reproducibility.
     search_name = "TorchCVAE" # Name of the search method.
 
     # Results files.
     filename_yaml = f"results/{search_name}_{miller_index}.yaml"
-    filename_png = f"results/{search_name}_{miller_index}.png"
+    filename_png = f"results/{search_name}_{miller_index}_distr.png"
+
+    # Input data.
+    filename_input = f"results/DualAnnealing_{miller_index}.yaml"
+    n_input = 500
+
+    # Parameters for the search.
+    search_kwargs = {
+        "mult_y_cond": 0.,
+        "n_random_samples": 0,
+        "n_top_selected": 1000,
+        "latent_dim": 32,
+        "hidden_dim_1": 128,
+        "hidden_dim_2": 64,
+        "optimizer_kwargs": {"lr": 1e-3},
+        "n_epochs": 100,
+        "loss_type": "CEPA",
+        "kl_weight": 0.1,
+        "final_activation": "gumbel_softmax_per_atom",
+        "gumbel_temperature": 1.0,
+    }
 
     # Get model parameters and features.
     model_params, preproc_params = get_graph_model_parameters()
@@ -55,17 +75,6 @@ def main():
 
     # Get atoms from template database.
     atoms_list, n_atoms_surf = get_atoms_from_template_db(miller_index=miller_index)
-    
-    # Parameters for the search.
-    search_kwargs = {
-        "n_random_samples": 200,
-        "delta_y_cond": 0.,
-        "latent_dim": 32,
-        "hidden_dim_1": 128,
-        "hidden_dim_2": 64,
-        "optimizer_kwargs": {"lr": 1e-4},
-        "n_epochs": 1000,
-    }
     
     # Parameters for reaction rate evaluation.
     reaction_rate_kwargs = {
@@ -84,7 +93,11 @@ def main():
         open(file=filename_yaml, mode="w").close()
     
     # Data from previous run.
-    data_input_list = [None] * n_runs
+    data_input_list = get_data_input_from_yaml(
+        filename_input=filename_input,
+        n_input=n_input,
+        n_runs=n_runs,
+    )
     
     # Run multiple searches.
     data_run_list = []
@@ -98,9 +111,10 @@ def main():
             n_atoms_surf=n_atoms_surf,
             n_eval=n_eval,
             run_id=run_id,
-            random_seed=random_seed+run_id,
-            print_results=print_results,
+            random_seed=random_seed + run_id,
             write_results=write_results,
+            print_results=print_results,
+            print_progress=print_progress,
             filename_yaml=filename_yaml,
             search_kwargs=search_kwargs,
             data_input=data_input_list[run_id],
@@ -110,8 +124,8 @@ def main():
     # Combine data from all runs.
     data_all = [data for data_run in data_run_list for data in data_run]
         
-    # Plot cumulative maximum rate curve.
-    plot_cumulative_max_curve(data_all=data_all, filename=filename_png)
+    # Plot half violins.
+    plot_half_violins(data_all=data_all, filename=filename_png)
     
     # Get best structure from all runs.
     data_best = sorted(data_all, key=lambda xx: xx["rate"], reverse=True)[0]
@@ -120,19 +134,6 @@ def main():
     print(f"Symbols =", ",".join(symbols_best))
     print(f"Reaction Rate = {rate_best:+7.3e} [1/s]")
     
-    # Update elements of adsorbate atoms.
-    update_atoms_list(
-        atoms_list=atoms_list,
-        features_bulk=features_bulk,
-        features_gas=features_gas,
-        symbols=symbols_best,
-        n_atoms_surf=n_atoms_surf,
-    )
-    # Show atoms.
-    if show_atoms is True:
-        gui = GUI(atoms_list)
-        gui.run()
-
 # -------------------------------------------------------------------------------------
 # RUN GENERATIVE CVAE MODEL
 # -------------------------------------------------------------------------------------
@@ -145,8 +146,9 @@ def run_generative_CVAE_model(
     n_eval: int,
     run_id: int,
     random_seed: int,
-    print_results: bool = True,
     write_results: bool = True,
+    print_results: bool = True,
+    print_progress: bool = False,
     filename_yaml: str = "TorchCVAE.yaml",
     search_kwargs: dict = {},
     data_input: list = None,
@@ -155,15 +157,17 @@ def run_generative_CVAE_model(
     Run a structure optimization with a generative PyTorch CVAE model.
     """
     import random
-    # Get parameters for initial random search.
-    n_random_samples = search_kwargs.pop("n_random_samples")
-    delta_y_cond = search_kwargs.pop("delta_y_cond")
+    random.seed(random_seed)
+    # Pop parameters from search kwargs.
+    search_kwargs = search_kwargs.copy()
+    n_random_samples = search_kwargs.pop("n_random_samples", 0)
+    n_top_selected = search_kwargs.pop("n_top_selected", 100)
+    mult_y_cond = search_kwargs.pop("mult_y_cond", 1.)
     # Prepare data storage for the run.
     data_run = data_input or []
     if write_results is True and len(data_run) > 0:
         write_to_yaml(filename=filename_yaml, data=data_run, mode="a")
-    # Random search of surface with highest reaction rate.
-    random.seed(random_seed)
+    # Run initial random search.
     for jj in range(n_random_samples):
         # Get elements for the surface.
         symbols = random.choices(population=element_pool, k=n_atoms_surf)
@@ -174,25 +178,32 @@ def run_generative_CVAE_model(
         # Write results to yaml.
         if write_results is True:
             write_to_yaml(filename=filename_yaml, data=[data], mode="a")
-        # Print results to screen.
+        # Print results of the search.
         if print_results is True:
-            print(f"Symbols =", ",".join(symbols))
-            print(f"Reaction Rate = {rate:+7.3e} [1/s]")
-    # Extract maximum rate. We use all the data because we use conditioning.
-    y_cond = max([data["rate"] for data in data_run]) + delta_y_cond
+            print_search_results(symbols=symbols, rate=rate)
+        # Print progress of the search.
+        elif print_progress is True:
+            print_search_progress(run_id=run_id, nn=len(data_run), n_eval=n_eval)
+    # Initialize the CVAE model.
+    model = CVAE(
+        n_atoms_surf=n_atoms_surf,
+        n_elements=len(element_pool),
+        **search_kwargs,
+    )
+    # Extract the data with higher rate.
+    data_list = sorted(data_run, key=lambda data: data["rate"])[-n_top_selected:]
+    # Extract maximum rate.
+    y_cond = max([data["rate"] for data in data_list]) * mult_y_cond
     # Get dataloader from data list.
     dataloader = get_dataloader_from_data_list(
-        data_list=data_run,
+        data_list=data_list,
         element_pool=element_pool,
     )
-    # Initialize the CVAE model.
-    n_elements = len(element_pool)
-    model = CVAE(n_atoms_surf=n_atoms_surf, n_elements=n_elements, **search_kwargs)
     # Train the CVAE model.
     model.train_model(dataloader=dataloader)
     # Generate new samples using the trained CVAE model.
     generated_samples = model.generate_new_samples(
-        n_samples=n_eval-n_random_samples,
+        n_samples=n_eval-len(data_run),
         y_cond=y_cond,
     )
     # Evaluate generated samples and calculate reaction rates.
@@ -206,17 +217,18 @@ def run_generative_CVAE_model(
         # Write results to yaml.
         if write_results is True:
             write_to_yaml(filename=filename_yaml, data=[data], mode="a")
-        # Print results to screen.
+        # Print results of the search.
         if print_results is True:
-            print(f"Symbols =", ",".join(symbols))
-            print(f"Reaction Rate = {rate:+7.3e} [1/s]")
+            print_search_results(symbols=symbols, rate=rate)
+        # Print progress of the search.
+        elif print_progress is True:
+            print_search_progress(run_id=run_id, nn=len(data_run), n_eval=n_eval)
     # Get best structure.
     if print_results is True:
-        data_best = sorted(data_run, key=lambda xx: xx["rate"], reverse=True)[0]
-        rate_best, symbols_best = data_best["rate"], data_best["symbols"]
-        print(f"Best Structure of run {run_id}:")
-        print(f"Symbols =", ",".join(symbols_best))
-        print(f"Reaction Rate = {rate_best:+7.3e} [1/s]")
+        data = sorted(data_run, key=lambda xx: xx["rate"], reverse=True)[0]
+        rate, symbols = data["rate"], data["symbols"]
+        print(f"Best Structure of Run {run_id}:")
+        print_search_results(symbols=symbols, rate=rate)
     # Return run data.
     return data_run
 
@@ -226,7 +238,7 @@ def run_generative_CVAE_model(
 
 import torch
 import torch.nn as nn
-import torch.optim as optim
+from torch.optim import Adam
 from torch.utils.data import DataLoader, TensorDataset
 
 class CVAE(nn.Module):
@@ -237,12 +249,14 @@ class CVAE(nn.Module):
         latent_dim: int,
         hidden_dim_1: int = 128,
         hidden_dim_2: int = 64,
-        optimizer: object = optim.Adam,
-        optimizer_kwargs: dict = {"lr": 1e-4},
+        cond_dim: int = 1,
+        optimizer: object = Adam,
+        optimizer_kwargs: dict = {"lr": 1e-3},
         n_epochs: int = 100,
-        loss_type: str = "BCE", # CE | BCE | MSE
-        kl_weight: float = 1e-2,
-        final_activation: str = "sigmoid", # sigmoid | softmax | softmax_per_atom
+        loss_type: str = "CEPA",
+        kl_weight: float = 0.1,
+        final_activation: str = "gumbel_softmax_per_atom",
+        gumbel_temperature: float = 1.0,
     ):
         """
         Conditional Variational AutoEncoder (CVAE) model.
@@ -254,13 +268,14 @@ class CVAE(nn.Module):
         self.latent_dim = latent_dim
         self.hidden_dim_1 = hidden_dim_1
         self.hidden_dim_2 = hidden_dim_2
+        self.cond_dim = cond_dim
         self.optimizer = optimizer
         self.optimizer_kwargs = optimizer_kwargs
         self.n_epochs = n_epochs
         self.loss_type = loss_type
         self.kl_weight = kl_weight
         self.final_activation = final_activation
-        self.cond_dim = 1
+        self.gumbel_temperature = gumbel_temperature
         # Define the encoder network.
         self.encoder = nn.Sequential(
             nn.Linear(self.input_dim + self.cond_dim, self.hidden_dim_1),
@@ -278,14 +293,6 @@ class CVAE(nn.Module):
             nn.Linear(self.hidden_dim_1, self.input_dim),
         )
     
-    def reparameterize(self, mu, logvar):
-        """
-        Reparameterization trick to sample from the latent space.
-        """
-        std = torch.exp(0.5 * logvar)
-        eps = torch.randn_like(std)
-        return mu + eps * std
-
     def forward(self, x, y):
         """
         Forward pass through the CVAE.
@@ -302,27 +309,72 @@ class CVAE(nn.Module):
         z_cond = torch.cat([z, y_expand], dim=1)
         # Decode.
         decoded = self.decoder(z_cond)
-        # Apply activation.
+        # Apply final activation.
+        decoded = self.apply_final_activation(decoded)
+        # Return decoded, mu and logvar.
+        return decoded, mu, logvar
+
+    def reparameterize(self, mu, logvar):
+        """
+        Reparameterization trick to sample from the latent space.
+        """
+        std = torch.exp(0.5 * logvar)
+        eps = torch.randn_like(std)
+        return mu + eps * std
+
+    def apply_final_activation(self, decoded):
+        """
+        Apply final activation to the decoded output.
+        """
         if self.final_activation == "sigmoid":
             decoded = torch.sigmoid(decoded)
         elif self.final_activation == "softmax":
             decoded = torch.softmax(decoded, dim=-1)
         elif self.final_activation == "softmax_per_atom":
             decoded = self.softmax_per_atom(decoded)
-        # Return decoded, mu and logvar.
-        return decoded, mu, logvar
+        elif self.final_activation == "gumbel_softmax_per_atom":
+            decoded = self.gumbel_softmax_per_atom(decoded, self.gumbel_temperature)
+        return decoded
+
+    def softmax_per_atom(self, x):
+        """
+        Applies softmax per element group.
+        """
+        batch_size, total_dim = x.shape
+        n_atoms = total_dim // self.n_elements
+        x = x.view(batch_size, n_atoms, self.n_elements)
+        x = torch.softmax(x, dim=-1)
+        return x.view(batch_size, total_dim)
+
+    def gumbel_softmax_per_atom(self, x, temperature):
+        """
+        Applies Gumbel–Softmax sampling per atom group.
+        """
+        batch_size, total_dim = x.shape
+        n_atoms = total_dim // self.n_elements
+        x = x.view(batch_size, n_atoms, self.n_elements)
+        # Gumbel noise.
+        g = -torch.log(-torch.log(torch.rand_like(x) + 1e-10) + 1e-10)
+        y = nn.functional.softmax((x + g) / temperature, dim=-1)
+        return y.view(batch_size, total_dim)
 
     def compute_loss(self, recon_x, x, mu, logvar):
         """
-        Compute the CVAE loss function.
+        Compute the loss function.
         """
         # Reconstruction Loss.
         if self.loss_type == "CE":
+            # Cross-entropy loss.
             loss = nn.functional.cross_entropy(recon_x, x, reduction="sum")
         elif self.loss_type == "BCE":
+            # Binary cross-entropy loss.
             loss = nn.functional.binary_cross_entropy(recon_x, x, reduction="sum")
         elif self.loss_type == "MSE":
+            # Mean squared error loss.
             loss = nn.functional.mse_loss(recon_x, x, reduction="sum")
+        elif self.loss_type == "CEPA":
+            # Cross-entropy between one-hot target and predicted distribution.
+            loss = -(x * torch.log(recon_x + 1e-10)).sum()
         # KL divergence Loss.
         kl = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
         # Return loss.
@@ -330,7 +382,7 @@ class CVAE(nn.Module):
 
     def train_model(self, dataloader):
         """
-        Train the CVAE model.
+        Train the model.
         """
         # Prepare optimizer.
         opt = self.optimizer(self.parameters(), **self.optimizer_kwargs)
@@ -357,32 +409,24 @@ class CVAE(nn.Module):
             
     def generate_new_samples(self, n_samples, y_cond=None):
         """
-        Generate new surface configurations using the trained CVAE model.
+        Generate new surface configurations using the trained model.
         """
         self.eval()
         # Sample random points from the latent space.
-        zz = torch.randn(n_samples, self.latent_dim)
+        z = torch.randn(n_samples, self.latent_dim)
         # Generate y_cond if it is none or constant.
         if y_cond is None:
             y_cond = torch.zeros(n_samples, 1)
         elif isinstance(y_cond, float):
             y_cond = torch.full((n_samples, 1), y_cond)
-        # Get z_cond.
-        z_cond = torch.cat([zz, y_cond], dim=1)
-        generated_samples = self.decoder(z_cond)
+        # Concatenate z and y_cond.
+        z_cond = torch.cat([z, y_cond], dim=1)
+        # Decode the points to get new surface configurations.
+        decoded = self.decoder(z_cond)
+        # Apply final activation.
+        generated_samples = self.apply_final_activation(decoded)
         # Return generated samples.
         return generated_samples
-
-    def softmax_per_atom(self, x):
-        """
-        Applies softmax to each atom's element group independently.
-        Assumes x has shape [batch_size, n_atoms * n_elements].
-        """
-        batch_size, total_dim = x.shape
-        n_atoms = total_dim // self.n_elements
-        x = x.view(batch_size, n_atoms, self.n_elements)
-        x = torch.softmax(x, dim=-1)
-        return x.view(batch_size, total_dim)
 
 # -------------------------------------------------------------------------------------
 # GET DATALOADER FROM DATA LIST
@@ -394,6 +438,7 @@ def get_dataloader_from_data_list(
     key_y: str = "rate",
     key_X: str = "symbols",
     batch_size: int = 1,
+    use_log_y: bool = False,
 ):
     """
     Get a PyTorch DataLoader from a dictionary of data.
@@ -407,6 +452,9 @@ def get_dataloader_from_data_list(
     # Prepare data for DataLoader.
     X_list = [[element_to_encoded[el] for el in data[key_X]] for data in data_list]
     y_list = [data[key_y] for data in data_list]
+    # Apply log to y.
+    if use_log_y is True:
+        y_list = [np.log(np.clip(yy, a_min=1e-12, a_max=None)) for yy in y_list]
     # Convert lists to tensors.
     X_tensor = torch.stack([torch.cat(struct) for struct in X_list]).float()
     y_tensor = torch.tensor(y_list, dtype=torch.float32).unsqueeze(1)

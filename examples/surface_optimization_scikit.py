@@ -4,11 +4,10 @@
 
 import os
 import numpy as np
-from ase.gui.gui import GUI
 
-from ase_ml_models.yaml import write_to_yaml
-from catalyst_opt_tools.utilities import update_atoms_list, print_title, parallel_runs
-from catalyst_opt_tools.plots import plot_cumulative_max_curve
+from catalyst_opt_tools.optimization import run_searches, run_scikit_optimization
+from catalyst_opt_tools.utilities import print_title, get_data_input_from_yaml
+from catalyst_opt_tools.plots import plot_cumulative_max_curve, plot_half_violins
 
 from reaction_rate_calculation import (
     get_graph_model_parameters,
@@ -17,7 +16,6 @@ from reaction_rate_calculation import (
     get_atoms_from_template_db,
     reaction_rate_of_RDS_from_symbols,
 )
-from surface_optimization_random import run_random_search
 
 # -------------------------------------------------------------------------------------
 # MAIN
@@ -26,21 +24,34 @@ from surface_optimization_random import run_random_search
 def main():
 
     # Control.
-    show_atoms = False
-    print_results = True
     write_results = True
+    print_results = False
+    print_progress = True
+    parallel_method = "multiprocessing" # serial | multiprocessing
 
     # Parameters.
     miller_index = "100" # 100 | 111
-    element_pool = ["Rh", "Cu", "Au"] # Possible elements of the surface.
-    n_eval = 50 # Number of structures evaluated per run.
-    n_runs = 5 # Number of search runs.
+    element_pool = ["Rh", "Cu", "Au", "Ni", "Pd", "Co"] # Possible surface elements.
+    n_eval = 1000 # Number of structures evaluated per run.
+    n_runs = 3 # Number of search runs.
     random_seed = 42 # Random seed for reproducibility.
-    search_name = "RandomSearch" # Name of the search method.
+    search_name = "ScikitOptimization" # Name of the search method.
 
     # Results files.
-    directory_yaml = f"results/{search_name}_{miller_index}"
-    filename_png = f"results/{search_name}_{miller_index}.png"
+    filename_yaml = f"results/{search_name}_{miller_index}.yaml"
+    filename_png = f"results/{search_name}_{miller_index}_distr.png"
+
+    # Input data.
+    filename_input = None
+    n_input = 0
+
+    # Parameters for the search.
+    search_kwargs = {
+        "n_initial_points": int(n_eval / 10),
+        "base_estimator": "GBRT", # GP | RF | ET | GBRT
+        "acq_func": "LCB", # EI | LCB | PI | EIps | PIps | gp_hedge
+        "acq_optimizer": "auto", # auto | sampling | lbfgs
+    }
 
     # Get model parameters and features.
     model_params, preproc_params = get_graph_model_parameters()
@@ -57,9 +68,6 @@ def main():
     # Get atoms from template database.
     atoms_list, n_atoms_surf = get_atoms_from_template_db(miller_index=miller_index)
     
-    # Parameters for the search.
-    search_kwargs = {}
-    
     # Parameters for reaction rate function.
     reaction_rate_kwargs = {
         "atoms_list": atoms_list,
@@ -72,50 +80,40 @@ def main():
         "miller_index": miller_index,
     }
     
-    # Create directory for YAML files.
+    # Reset YAML file.
     if write_results is True:
-        os.makedirs(name=directory_yaml, exist_ok=True)
+        open(file=filename_yaml, mode="w").close()
     
     # Data from previous run.
-    data_input_list = [None] * n_runs
+    data_input_list = get_data_input_from_yaml(
+        filename_input=filename_input,
+        n_input=n_input,
+        n_runs=n_runs,
+    )
     
     # Run multiple searches.
-    args_list = []
-    for run_id in range(n_runs):
-        # Name of the YAML file for this run.
-        filename_yaml = f"{directory_yaml}/{run_id:02d}.yaml"
-        # Reset YAML file.
-        if write_results is True:
-            open(file=filename_yaml, mode="w").close()
-        # Run optimization.
-        args_list.append([
-            reaction_rate_of_RDS_from_symbols,
-            reaction_rate_kwargs,
-            element_pool,
-            n_atoms_surf,
-            n_eval,
-            run_id,
-            random_seed+run_id,
-            print_results,
-            write_results,
-            filename_yaml,
-            search_kwargs,
-            data_input_list[run_id],
-        ])
-    
-    # Execute parallel runs.
-    data_run_list = parallel_runs(
-        function=run_random_search,
-        args_list=args_list,
-        method="multiprocessing",
-        n_jobs=len(args_list),
-        with_tqdm=False,
+    print_title(f"{search_name}: {n_runs} Runs")
+    data_all = run_searches(
+        search_name=search_name,
+        n_runs=n_runs,
+        optimization_fun=run_scikit_optimization,
+        reaction_rate_fun=reaction_rate_of_RDS_from_symbols,
+        reaction_rate_kwargs=reaction_rate_kwargs,
+        element_pool=element_pool,
+        n_atoms_surf=n_atoms_surf,
+        n_eval=n_eval,
+        random_seed=random_seed,
+        write_results=write_results,
+        print_results=print_results,
+        print_progress=print_progress,
+        filename_yaml=filename_yaml,
+        search_kwargs=search_kwargs,
+        data_input_list=data_input_list,
+        parallel_method=parallel_method,
     )
-    # Combine data from all runs.
-    data_all = [data for data_run in data_run_list for data in data_run]
     
-    # Plot cumulative maximum rate curve.
-    plot_cumulative_max_curve(data_all=data_all, filename=filename_png)
+    # Plot half violins.
+    plot_half_violins(data_all=data_all, filename=filename_png)
     
     # Get best structure from all runs.
     data_best = sorted(data_all, key=lambda xx: xx["rate"], reverse=True)[0]
@@ -124,19 +122,6 @@ def main():
     print(f"Symbols =", ",".join(symbols_best))
     print(f"Reaction Rate = {rate_best:+7.3e} [1/s]")
     
-    # Update elements of adsorbate atoms.
-    update_atoms_list(
-        atoms_list=atoms_list,
-        features_bulk=features_bulk,
-        features_gas=features_gas,
-        symbols=symbols_best,
-        n_atoms_surf=n_atoms_surf,
-    )
-    # Show atoms.
-    if show_atoms is True:
-        gui = GUI(atoms_list)
-        gui.run()
-
 # -------------------------------------------------------------------------------------
 # IF NAME MAIN
 # -------------------------------------------------------------------------------------

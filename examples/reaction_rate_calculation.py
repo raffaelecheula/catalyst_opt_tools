@@ -171,6 +171,7 @@ def reaction_rate_of_RDS_from_symbols(
     model_params: dict,
     preproc_params: dict,
     miller_index: str,
+    return_log_rate: bool = False,
 ):
     """
     Get reaction rate of the RDS from the surface symbols.
@@ -196,7 +197,10 @@ def reaction_rate_of_RDS_from_symbols(
         miller_index=miller_index,
     )
     # Return the reaction rate.
-    return rate
+    if return_log_rate is True:
+        return np.log(np.clip(a=rate, a_min=1e-20, a_max=None))
+    else:
+        return rate
 
 # -------------------------------------------------------------------------------------
 # TRAIN GRAPH MODEL
