@@ -7,15 +7,7 @@ import numpy as np
 from ase.db import connect
 from ase.gui.gui import GUI
 
-from ase_ml_models.databases import (
-    get_atoms_list_from_db,
-    write_atoms_list_to_db,
-)
-from ase_ml_models.utilities import (
-    get_connectivity,
-    plot_connectivity,
-    print_features_table,
-)
+from ase_ml_models.databases import get_atoms_list_from_db, write_atoms_list_to_db
 from catalyst_opt_tools.adsorption import get_cluster_from_surface
 from catalyst_opt_tools.utilities import get_features
 

@@ -2,21 +2,13 @@
 # IMPORTS
 # -------------------------------------------------------------------------------------
 
-import os
 import yaml
-import numpy as np
-import matplotlib.pyplot as plt
 from ase.gui.gui import GUI
 from ase.io.animation import write_animation
 
-from ase_ml_models.yaml import write_to_yaml
-from catalyst_opt_tools.utilities import update_atoms_list, print_title
-from catalyst_opt_tools.plots import plot_cumulative_max_curve
+from catalyst_opt_tools.utilities import update_atoms_list
 
-from reaction_rate_calculation import (
-    get_atoms_from_template_db,
-    get_features_bulk_and_gas,
-)
+from reaction_rate_calculation import get_atoms_from_template_db
 
 # -------------------------------------------------------------------------------------
 # MAIN
@@ -30,14 +22,11 @@ def main():
 
     # Parameters.
     miller_index = "100" # 100 | 111
-    search_name = "RandomSearch" # Name of the search method.
+    search_name = "GeneticAlgorithm" # Name of the search method.
     filename_yaml = f"results/{search_name}_{miller_index}.yaml"
 
     # Get data from yaml results file.
     data_all = yaml.safe_load(open(filename_yaml, "r"))
-
-    # Get features.
-    features_bulk, features_gas = get_features_bulk_and_gas()
 
     # Get best structure from all runs.
     data_best = sorted(data_all, key=lambda xx: xx["rate"], reverse=True)[0]
@@ -49,10 +38,9 @@ def main():
     # Update elements of adsorbate atoms.
     update_atoms_list(
         atoms_list=atoms_list,
-        features_bulk=features_bulk,
-        features_gas=features_gas,
         symbols=symbols_best,
         n_atoms_surf=n_atoms_surf,
+        update_features=False,
     )
 
     # Show atoms.

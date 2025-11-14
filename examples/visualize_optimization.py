@@ -2,16 +2,11 @@
 # IMPORTS
 # -------------------------------------------------------------------------------------
 
-import os
 import yaml
-import numpy as np
-import matplotlib.pyplot as plt
 from ase.gui.gui import GUI
 from ase.io.animation import write_animation
 
-from ase_ml_models.yaml import write_to_yaml
-from catalyst_opt_tools.utilities import update_atoms_list, print_title
-from catalyst_opt_tools.plots import plot_cumulative_max_curve
+from catalyst_opt_tools.utilities import update_atoms_list
 
 from reaction_rate_calculation import get_atoms_from_template_db
 

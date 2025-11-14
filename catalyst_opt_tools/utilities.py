@@ -52,10 +52,11 @@ def get_features(
 
 def update_atoms_list(
     atoms_list: Atoms,
-    features_bulk: dict,
-    features_gas: dict,
+    features_bulk: dict = {},
+    features_gas: dict = {},
     symbols: list = None,
     n_atoms_surf: int = None,
+    update_features: bool = True,
 ) -> None:
     """
     Update atoms list with new symbols and calculate corresponding features.
@@ -66,11 +67,12 @@ def update_atoms_list(
         if symbols is not None:
             atoms.symbols[:n_atoms_surf] = symbols
         # Update features.
-        get_features(
-            atoms=atoms,
-            features_bulk=features_bulk,
-            features_gas=features_gas,
-        )
+        if update_features is True:
+            get_features(
+                atoms=atoms,
+                features_bulk=features_bulk,
+                features_gas=features_gas,
+            )
 
 # -------------------------------------------------------------------------------------
 # PREPROCESS FEATURES

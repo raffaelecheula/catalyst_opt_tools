@@ -4,6 +4,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.transforms import ScaledTranslation
 
 # -------------------------------------------------------------------------------------
 # PLOT CUMULATIVE MAX CURVE
@@ -92,6 +93,7 @@ def plot_half_violins(
     edgecolor: str = "black",
     alpha_fill: float = 0.7,
     n_x_ticks: int = 10,
+    shift_x_labels: bool = True,
     merge_data_all: bool = True,
     scatter_top_n: int = None,
     xlabel: str = "Number of structures evaluated [-]",
@@ -153,8 +155,16 @@ def plot_half_violins(
     # Set the number of x ticks.
     if n_x_ticks is not None:
         ax.locator_params(axis="x", nbins=n_x_ticks)
-        ax.grid(True, axis="x", linestyle="--", color="gray", alpha=0.5)
+        ax.grid(visible=True, axis="x", linestyle="--", color="gray", alpha=0.5)
         ax.set_axisbelow(True)
+    # Shift x tick labels.
+    if shift_x_labels is True:
+        dx = ax.transData.transform((1, 0))[0] - ax.transData.transform((0, 0))[0]
+        xt = (-size / 2) * dx / fig.dpi
+        offset = ScaledTranslation(xt=xt, yt=0, scale_trans=fig.dpi_scale_trans)
+        for label in ax.get_xticklabels():
+            label.set_transform(label.get_transform() + offset)
+        ax.get_xticklabels()[0].set_visible(False)
     # Set axes labels.
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)

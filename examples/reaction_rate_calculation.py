@@ -9,7 +9,6 @@ from ase.db import connect
 from ase.gui.gui import GUI
 
 from ase_ml_models.databases import get_atoms_list_from_db
-from ase_ml_models.yaml import write_to_yaml
 from ase_ml_models.graph import graph_train, graph_predict, graph_preprocess
 from catalyst_opt_tools.utilities import update_atoms_list, preprocess_features
 

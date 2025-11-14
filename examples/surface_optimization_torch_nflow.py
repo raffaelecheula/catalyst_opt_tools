@@ -2,12 +2,11 @@
 # IMPORTS
 # -------------------------------------------------------------------------------------
 
-import os
 import numpy as np
 
 from ase_ml_models.yaml import write_to_yaml
 from catalyst_opt_tools.optimization import print_search_results, print_search_progress
-from catalyst_opt_tools.plots import plot_cumulative_max_curve, plot_half_violins
+from catalyst_opt_tools.plots import plot_half_violins
 from catalyst_opt_tools.utilities import print_title, get_data_input_from_yaml
 
 from reaction_rate_calculation import (

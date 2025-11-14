@@ -2,13 +2,12 @@
 # IMPORTS
 # -------------------------------------------------------------------------------------
 
-import os
 import numpy as np
 from ase.gui.gui import GUI
 
 from catalyst_opt_tools.optimization import run_random_search
 from catalyst_opt_tools.utilities import update_atoms_list, print_title
-from catalyst_opt_tools.plots import plot_cumulative_max_curve, plot_half_violins
+from catalyst_opt_tools.plots import plot_half_violins
 
 from reaction_rate_calculation import (
     get_graph_model_parameters,

@@ -3,7 +3,6 @@
 # -------------------------------------------------------------------------------------
 
 import yaml
-import numpy as np
 from ase.db import connect
 from ase.gui.gui import GUI
 

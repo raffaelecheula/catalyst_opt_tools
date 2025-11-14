@@ -3,10 +3,8 @@
 # -------------------------------------------------------------------------------------
 
 import os
-import numpy as np
 import matplotlib.pyplot as plt
 from ase.db import connect
-from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 from ase_ml_models.databases import get_atoms_list_from_db
 from ase_ml_models.workflow import (
@@ -16,7 +14,6 @@ from ase_ml_models.workflow import (
     crossvalidation,
     calibrate_uncertainty,
     parity_plot,
-    violin_plot,
     groups_errors_plot,
     uncertainty_plot,
 )

@@ -2,12 +2,11 @@
 # IMPORTS
 # -------------------------------------------------------------------------------------
 
-import os
 import numpy as np
 
 from catalyst_opt_tools.optimization import run_searches, run_genetic_algorithm
 from catalyst_opt_tools.utilities import print_title, get_data_input_from_yaml
-from catalyst_opt_tools.plots import plot_cumulative_max_curve, plot_half_violins
+from catalyst_opt_tools.plots import plot_half_violins
 
 from reaction_rate_calculation import (
     get_graph_model_parameters,
